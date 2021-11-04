@@ -27,6 +27,8 @@ set(PROJECT_SOURCES
         Models/Squad.cpp
         Models/Duty.h
         Models/Duty.cpp
+        Controllers/PlatoonController.h
+        Controllers/PlatoonController.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
