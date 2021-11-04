@@ -6,11 +6,17 @@
 class Squad : public QObject
 {
     Q_OBJECT
-public:
+private:    // fields
+    unsigned int squadId;
+    QString squadName;
+
+public:     // constructors
     explicit Squad(QObject *parent = nullptr);
+    explicit Squad(unsigned int id, QString name, QObject *parent = nullptr);
 
-signals:
-
+public:     // properties
+    unsigned int GetId() const;
+    QString GetName() const;
 };
 
 #endif // SQUAD_H
