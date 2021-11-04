@@ -25,6 +25,8 @@ set(PROJECT_SOURCES
         Models/Team.cpp
         Models/Squad.h
         Models/Squad.cpp
+        Models/Duty.h
+        Models/Duty.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
