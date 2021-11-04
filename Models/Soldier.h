@@ -28,20 +28,29 @@ private:    // fields
     Rank soldierRank;
     Role soldierRole;
     ShiftTime soldierShiftTime;
+    class Squad* soldierSquad;
+
 
 public:     // constructors
     explicit Soldier(QObject *parent = nullptr);
-    explicit Soldier(int id, QString name, Rank rank, Role role, ShiftTime shiftTime = ShiftTime::DAY, QObject *parent = nullptr);
+    explicit Soldier(unsigned int id, QString name, Rank rank, Role role, ShiftTime shiftTime = ShiftTime::DAY, QObject *parent = nullptr);
 
 public:     // properties
     int GetId() const;
+
     QString GetName() const;
+
     Rank GetRank() const;
     void SetRank(Rank rank);
+
     Role GetRole() const;
     void SetRole(Role role);
+
     ShiftTime GetShiftTime() const;
     void SetShiftTime(ShiftTime shiftTime);
+
+    Squad* GetSquad() const;
+    void SetSquad(Squad* squad);
 };
 
 #endif // SOLDIER_H

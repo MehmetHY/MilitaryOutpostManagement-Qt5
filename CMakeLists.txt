@@ -21,6 +21,10 @@ set(PROJECT_SOURCES
         mainwindow.ui
         Models/Soldier.h
         Models/Soldier.cpp
+        Models/Team.h
+        Models/Team.cpp
+        Models/Squad.h
+        Models/Squad.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

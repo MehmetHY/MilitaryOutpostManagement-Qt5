@@ -5,7 +5,7 @@ Soldier::Soldier(QObject *parent) : QObject(parent)
 
 }
 
-Soldier::Soldier(int id, QString name, Rank rank, Role role, ShiftTime shiftTime, QObject *parent)
+Soldier::Soldier(unsigned int id, QString name, Rank rank, Role role, ShiftTime shiftTime, QObject *parent)
     :   QObject(parent), soldierId(id), soldierName(name), soldierRank(rank), soldierRole(role), soldierShiftTime(shiftTime)
 {
 
@@ -49,4 +49,14 @@ Soldier::ShiftTime Soldier::GetShiftTime() const
 void Soldier::SetShiftTime(ShiftTime shiftTime)
 {
     soldierShiftTime = shiftTime;
+}
+
+Squad *Soldier::GetSquad() const
+{
+    return soldierSquad;
+}
+
+void Soldier::SetSquad(Squad *squad)
+{
+    soldierSquad = squad;
 }
