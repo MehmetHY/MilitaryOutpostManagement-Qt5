@@ -29,8 +29,6 @@ set(PROJECT_SOURCES
         Models/Soldier.cpp
         Models/Duty.h
         Models/Duty.cpp
-        Managers/PlatoonManager.h
-        Managers/PlatoonManager.cpp
         Managers/DataManager.h
         Managers/DataManager.cpp
 )

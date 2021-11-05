@@ -19,7 +19,7 @@ public:     // enums
     };
     enum class ShiftTime
     {
-        DAY, NIGHT
+        DAY, NIGHT, UNKNOWN
     };
 
 private:    // fields
@@ -51,6 +51,8 @@ public:     // properties
 
     Squad* GetSquad() const;
     void SetSquad(Squad* squad);
+
+    friend class DataManager;
 };
 
 #endif // SOLDIER_H

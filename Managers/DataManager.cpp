@@ -13,59 +13,68 @@ DataManager::DataManager(QObject *parent) : QObject(parent)
 
 }
 
-void DataManager::ValidateTables() const
-{
-    QStringList existingTableNames = QSqlDatabase::database().tables();
-    for (const QString& table : requiredTableNames)
-    {
-        if (!existingTableNames.contains(table))
-            qDebug() << "absent table found. Creating table: " << table;
-            CreateAbsentTable(table);
-    }
-}
 
-void DataManager::CreateAbsentTable(const QString tableName) const
+void DataManager::CreateTables() const
 {
-    QString queryString;
-    if (tableName == "squad")
-        queryString = R"(
-            CREATE TABLE squad (
-                id          INTEGER     PRIMARY KEY AUTOINCREMENT,
-                name        STRING(50)  NOT NULL
-            );
-            )";
-    else if (tableName == "team")
-        queryString = R"(
-            CREATE TABLE team (
-                id          INTEGER     PRIMARY KEY     AUTOINCREMENT,
-                name        STRING(50)  NOT NULL,
-                squad_id    INTEGER     REFERENCES squad(id)    NOT NULL
-            );
-            )";
-    else if (tableName == "soldier")
-        queryString = R"(
-            CREATE TABLE soldier (
-                id          INTEGER      PRIMARY KEY    AUTOINCREMENT,
-                name        STRING(50)   NOT NULL,
-                rank        INTEGER (20) NOT NULL,
-                role        INTEGER (10) NOT NULL,
-                shift_time  INTEGER (2),
-                team_id     INTEGER      REFERENCES team (id)
-            );
-            )";
-    else if (tableName == "duty")
-        queryString = R"(
-            CREATE TABLE duty (
-                id          INTEGER         PRIMARY KEY     AUTOINCREMENT,
-                name        STRING(50)      NOT NULL,
-                soldier     INTEGER         REFERENCES soldier (id)     NOT NULL,
-                start_date  DATETIME        NOT NULL,
-                end_time    DATETIME        NOT NULL
-            );
-            )";
+    QString queryString = R"(
+-- squad
+CREATE TABLE IF NOT EXISTS squad (
+    id      INTEGER         PRIMARY KEY    AUTOINCREMENT,
+    name    STRING (50)     UNIQUE         NOT NULL
+);
+
+-- team
+CREATE TABLE IF NOT EXISTS team (
+    id          INTEGER         PRIMARY KEY             AUTOINCREMENT,
+    name        STRING (50)     NOT NULL                UNIQUE,
+    squad_id    INTEGER         REFERENCES squad (id)   NOT NULL
+);
+
+-- rank
+CREATE TABLE IF NOT EXISTS rank (
+    id      INTEGER        PRIMARY KEY    AUTOINCREMENT,
+    name    STRING (50)    NOT NULL       UNIQUE
+);
+
+-- role
+CREATE TABLE IF NOT EXISTS role (
+    id      INTEGER        PRIMARY KEY    AUTOINCREMENT,
+    name    STRING (50)    NOT NULL       UNIQUE
+);
+
+-- soldier
+CREATE TABLE IF NOT EXISTS soldier (
+    id          INTEGER         PRIMARY KEY             AUTOINCREMENT,
+    name        STRING (50)     UNIQUE                  NOT NULL,
+    rank_id     INTEGER         REFERENCES rank (id)    NOT NULL,
+    role_id     INTEGER         REFERENCES role (id)    NOT NULL,
+    team_id     INTEGER         REFERENCES team (id)    DEFAULT NULL
+);
+
+-- duty
+CREATE TABLE IF NOT EXISTS duty (
+    id          INTEGER         PRIMARY KEY                 AUTOINCREMENT,
+    name        STRING (50)     NOT NULL,
+    soldier_id  INTEGER         REFERENCES soldier (id)     NOT NULL,
+    start_date  DATETIME,
+    end_date    DATETIME
+);
+    )";
 
     QSqlQuery* query = ExecuteQuery(queryString);
     delete query;
+}
+
+bool DataManager::ConnectSQLITE() const
+{
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("./Data/MilitaryOutput.db");
+    if (!db.open())
+    {
+        qDebug() << "Failed to connect to the database.";
+        return false;
+    }
+    return true;
 }
 
 QSqlQuery *DataManager::ExecuteQuery(const QString queryString) const
@@ -79,129 +88,29 @@ QSqlQuery *DataManager::ExecuteQuery(const QString queryString) const
     return query;
 }
 
-void DataManager::CreateConnection(const QString &driver, const QString &connectionString) const
+void DataManager::CreateConnection(DatabaseType type) const
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("./Data/MilitaryOutput.db");
-    if (!db.open())
+    bool success = false;
+    switch (type)
     {
-        qDebug() << "Failed to connect to the database.";
-        return;
+    case DataManager::DatabaseType::JSON:
+        // todo: Handle JSON parsing
+        break;
+    case DataManager::DatabaseType::SQLITE:
+        success = ConnectSQLITE();
+        break;
+    case DataManager::DatabaseType::MYSQL:
+        // todo: Handle MYSQL / MariaDB connection
+        break;
+    case DataManager::DatabaseType::MSSQL:
+        // todo: Handle MSSQL connection
+        break;
     }
-    ValidateTables();
+    if (success)
+        CreateTables();
 }
 
 void DataManager::CloseConnection() const
 {
     QSqlDatabase::database().close();
-}
-
-QList<Squad *>* DataManager::GetSquads(const QString whereCondition) const
-{
-    QList<Squad*>* squads = new QList<Squad*>();
-    QString queryString = "select * from squad " + whereCondition + ";";
-    QSqlQuery* query = ExecuteQuery(queryString);
-
-    while (query->next())
-    {
-        unsigned int id = query->value(0).toUInt();
-        QString name = query->value(1).toString();
-        squads->append(new Squad(id, name));
-    }
-
-    delete query;
-    return squads;
-}
-
-QList<Team *>* DataManager::GetTeams(const QString whereCondition) const
-{
-    QList<Team*>* teams = new QList<Team*>();
-    QString queryString = "select * from team " + whereCondition + ";";
-    QSqlQuery* query = ExecuteQuery(queryString);
-
-    while (query->next())
-    {
-        unsigned int id = query->value(0).toUInt();
-        QString name = query->value(1).toString();
-        unsigned int squad_id = query->value(2).toUInt();
-        QString squadQueryWhereCondition = "WHERE id = " + QString::number(squad_id);
-        auto squadList = GetSquads(squadQueryWhereCondition);
-        Squad* squad = (*squadList)[0];
-        teams->append(new Team(id, name, squad));
-        delete squadList;
-    }
-
-    delete query;
-    return teams;
-
-}
-
-QList<Soldier *>* DataManager::GetSoldiers(const QString whereCondition) const
-{
-
-}
-
-QList<Duty *>* DataManager::GetDuties(const QString whereCondition) const
-{
-
-}
-
-unsigned int DataManager::InsertSquad(Squad *squad) const
-{
-
-}
-
-unsigned int DataManager::InsertTeam(Team *team) const
-{
-
-}
-
-unsigned int DataManager::InsertSoldier(Soldier *soldier) const
-{
-
-}
-
-unsigned int DataManager::InsertDuty(Duty *duty) const
-{
-
-}
-
-void DataManager::UpdateSquad(Squad *squad) const
-{
-
-}
-
-void DataManager::UpdateTeam(Team *team) const
-{
-
-}
-
-void DataManager::UpdateSoldier(Soldier *soldier) const
-{
-
-}
-
-void DataManager::UpdateDuty(Duty *duty) const
-{
-
-}
-
-void DataManager::DeleteSquad(Squad *squad) const
-{
-
-}
-
-void DataManager::DeleteTeam(Team *team) const
-{
-
-}
-
-void DataManager::DeleteSoldier(Soldier *soldier) const
-{
-
-}
-
-void DataManager::DeleteDuty(Duty *duty) const
-{
-
 }
