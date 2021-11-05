@@ -11,24 +11,28 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets Sql REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Sql REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        Models/Soldier.h
-        Models/Soldier.cpp
-        Models/Team.h
-        Models/Team.cpp
+        Models/Platoon.h
+        Models/Platoon.cpp
         Models/Squad.h
         Models/Squad.cpp
+        Models/Team.h
+        Models/Team.cpp
+        Models/Soldier.h
+        Models/Soldier.cpp
         Models/Duty.h
         Models/Duty.cpp
-        Controllers/PlatoonController.h
-        Controllers/PlatoonController.cpp
+        Managers/PlatoonManager.h
+        Managers/PlatoonManager.cpp
+        Managers/DataManager.h
+        Managers/DataManager.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -54,7 +58,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(MilitaryOutpostManagement PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(MilitaryOutpostManagement PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
 
 set_target_properties(MilitaryOutpostManagement PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

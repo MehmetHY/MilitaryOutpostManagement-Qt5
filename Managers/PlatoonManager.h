@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-class PlatoonController : public QObject
+class PlatoonManager : public QObject
 {
     Q_OBJECT
 
@@ -14,8 +14,8 @@ private:    // fields
     QList<class Duty*>* dutyList;
 
 public:     // constructors
-    explicit PlatoonController(QObject *parent = nullptr);
-    explicit PlatoonController(Soldier* leader, Soldier* sergeant, QList<Squad*>* squads = nullptr, QList<Duty*>* duties = nullptr, QObject *parent = nullptr);
+    explicit PlatoonManager(QObject *parent = nullptr);
+    explicit PlatoonManager(Soldier* leader, Soldier* sergeant, QList<Squad*>* squads = nullptr, QList<Duty*>* duties = nullptr, QObject *parent = nullptr);
 
 public:     // properties
     Soldier* GetPlatoonLeader() const;
