@@ -3,6 +3,8 @@
 #include "Views/mainmenu.h"
 #include "Views/previewmenu.h"
 #include "Views/managemenu.h"
+#include "Views/previewhierarchymenu.h"
+#include "Views/previewdutiesmenu.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,6 +21,12 @@ MainWindow::MainWindow(QWidget *parent)
     ManageMenu* manageMenu = new ManageMenu(this);
     manageMenuId = ui->stackedWidget->addWidget(manageMenu);
 
+    PreviewHierarchyMenu* previewHierarchyMenu = new PreviewHierarchyMenu(this);
+    previewHierarchyMenuId = ui->stackedWidget->addWidget(previewHierarchyMenu);
+
+    PreviewDutiesMenu* previewDutiesMenu = new PreviewDutiesMenu(this);
+    previewDutiesMenuId = ui->stackedWidget->addWidget(previewDutiesMenu);
+
     ChangeMenu(Menu::MainMenu);
 }
 
@@ -32,6 +40,12 @@ void MainWindow::ChangeMenu(Menu menu)
     int id;
     switch (menu)
     {
+    case MainWindow::Menu::PreviewHierarchyMenu:
+        id = previewHierarchyMenuId;
+        break;
+    case MainWindow::Menu::PreviewDutiesMenu:
+        id = previewDutiesMenuId;
+        break;
     case MainWindow::Menu::MainMenu:
         id = mainMenuId;
         break;

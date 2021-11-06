@@ -3,7 +3,7 @@
 #include "../mainwindow.h"
 
 PreviewMenu::PreviewMenu(MainWindow* window, QWidget *parent) :
-    QWidget(parent), ui(new Ui::PreviewMenu),  mainWindow(window)
+    QWidget(parent), ui(new Ui::PreviewMenu), mainWindow(window)
 {
     ui->setupUi(this);
     connect(ui->backButton, &QPushButton::pressed, this, &PreviewMenu::HandleBackButtonPressed);

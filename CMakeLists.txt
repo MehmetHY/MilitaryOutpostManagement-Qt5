@@ -51,6 +51,14 @@ set(PROJECT_SOURCES
         Views/manageMenu.h
         Views/manageMenu.ui
 
+        Views/previewhierarchymenu.cpp
+        Views/previewhierarchymenu.h
+        Views/previewhierarchymenu.ui
+
+        Views/previewdutiesmenu.cpp
+        Views/previewdutiesmenu.h
+        Views/previewdutiesmenu.ui
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

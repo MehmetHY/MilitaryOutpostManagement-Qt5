@@ -26,5 +26,7 @@ private:
     int mainMenuId;
     int previewMenuId;
     int manageMenuId;
+    int previewHierarchyMenuId;
+    int previewDutiesMenuId;
 };
 #endif // MAINWINDOW_H
