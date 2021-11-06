@@ -87,6 +87,10 @@ set(PROJECT_SOURCES
         Views/managedutiesmenu.h
         Views/managedutiesmenu.ui
 
+        Views/createplatoonmenu.cpp
+        Views/createplatoonmenu.h
+        Views/createplatoonmenu.ui
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

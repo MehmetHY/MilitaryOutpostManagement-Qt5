@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "Views/createplatoonmenu.h"
 #include "Views/mainmenu.h"
 #include "Views/previewmenu.h"
 #include "Views/managemenu.h"
@@ -18,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    CreatePlatoonMenu* createPlatoonMenu = new CreatePlatoonMenu(this);
+    createPlatoonMenuId = ui->stackedWidget->addWidget(createPlatoonMenu);
 
     MainMenu* mainMenu = new MainMenu(this);
     mainMenuId = ui->stackedWidget->addWidget(mainMenu);
@@ -55,7 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
     ManageDutiesMenu* manageDutiesMenu = new ManageDutiesMenu(this);
     manageDutiesMenuId = ui->stackedWidget->addWidget(manageDutiesMenu);
 
-    ChangeMenu(Menu::MainMenu);
+    ChangeMenu(Menu::CreatePlatoonMenu);
 }
 
 MainWindow::~MainWindow()
@@ -68,6 +72,9 @@ void MainWindow::ChangeMenu(Menu menu)
     int id;
     switch (menu)
     {
+    case MainWindow::Menu::CreatePlatoonMenu:
+        id = createPlatoonMenuId;
+        break;
     case MainWindow::Menu::ManagePlatoonMenu:
         id = managePlatoonMenuId;
         break;

@@ -14,7 +14,7 @@ class MainWindow : public QMainWindow
 public:
     enum class Menu
     {
-        MainMenu, PreviewMenu, PreviewHierarchyMenu, PreviewDutiesMenu,
+        CreatePlatoonMenu, MainMenu, PreviewMenu, PreviewHierarchyMenu, PreviewDutiesMenu,
         ManageMenu, ManagePlatoonMenu, ManageSquadsMenu, ManageTeamsMenu,
         ManageSoldiersMenu, ManageRanksMenu, ManageRolesMenu, ManageDutiesMenu
     };
@@ -25,6 +25,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    int createPlatoonMenuId;
     int mainMenuId;
     int previewMenuId;
     int manageMenuId;
