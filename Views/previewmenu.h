@@ -20,6 +20,8 @@ private:
     MainWindow* mainWindow;
 
     void HandleBackButtonPressed();
+    void HandleHierarchyButtonPressed();
+    void HandleDutiesButtonPressed();
 };
 
 #endif // PREVIEWMENU_H

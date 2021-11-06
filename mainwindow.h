@@ -14,7 +14,7 @@ class MainWindow : public QMainWindow
 public:
     enum class Menu
     {
-        MainMenu, PreviewMenu, ManageMenu
+        MainMenu, PreviewMenu, PreviewHierarchyMenu, PreviewDutiesMenu, ManageMenu
     };
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
