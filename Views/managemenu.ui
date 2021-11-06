@@ -26,6 +26,97 @@
     <string>Back</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="platoonButton">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>100</y>
+     <width>141</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Platoon</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="squadsButton">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>100</y>
+     <width>141</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Squads</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="teamsButton">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>100</y>
+     <width>141</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Teams</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="soldiersButton">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>200</y>
+     <width>141</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Soldiers</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ranksButton">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>200</y>
+     <width>141</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ranks</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="rolesButton">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>200</y>
+     <width>141</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Roles</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dutiesButton">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>320</y>
+     <width>561</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Duties</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

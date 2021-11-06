@@ -59,6 +59,34 @@ set(PROJECT_SOURCES
         Views/previewdutiesmenu.h
         Views/previewdutiesmenu.ui
 
+        Views/manageplatoonmenu.cpp
+        Views/manageplatoonmenu.h
+        Views/manageplatoonmenu.ui
+
+        Views/managesquadsmenu.cpp
+        Views/managesquadsmenu.h
+        Views/managesquadsmenu.ui
+
+        Views/manageteamsmenu.cpp
+        Views/manageteamsmenu.h
+        Views/manageteamsmenu.ui
+
+        Views/managesoldiersmenu.cpp
+        Views/managesoldiersmenu.h
+        Views/managesoldiersmenu.ui
+
+        Views/manageranksmenu.cpp
+        Views/manageranksmenu.h
+        Views/manageranksmenu.ui
+
+        Views/managerolesmenu.cpp
+        Views/managerolesmenu.h
+        Views/managerolesmenu.ui
+
+        Views/managedutiesmenu.cpp
+        Views/managedutiesmenu.h
+        Views/managedutiesmenu.ui
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

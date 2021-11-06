@@ -14,7 +14,9 @@ class MainWindow : public QMainWindow
 public:
     enum class Menu
     {
-        MainMenu, PreviewMenu, PreviewHierarchyMenu, PreviewDutiesMenu, ManageMenu
+        MainMenu, PreviewMenu, PreviewHierarchyMenu, PreviewDutiesMenu,
+        ManageMenu, ManagePlatoonMenu, ManageSquadsMenu, ManageTeamsMenu,
+        ManageSoldiersMenu, ManageRanksMenu, ManageRolesMenu, ManageDutiesMenu
     };
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -28,5 +30,12 @@ private:
     int manageMenuId;
     int previewHierarchyMenuId;
     int previewDutiesMenuId;
+    int managePlatoonMenuId;
+    int manageSquadsMenuId;
+    int manageTeamsMenuId;
+    int manageSoldiersMenuId;
+    int manageRanksMenuId;
+    int manageRolesMenuId;
+    int manageDutiesMenuId;
 };
 #endif // MAINWINDOW_H

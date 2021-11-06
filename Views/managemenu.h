@@ -20,6 +20,13 @@ private:
     MainWindow* mainWindow;
 
     void HandleBackButtonPressed();
+    void HandlePlatoonButtonPressed();
+    void HandleSquadsButtonPressed();
+    void HandleTeamsButtonPressed();
+    void HandleSoldiersButtonPressed();
+    void HandleRanksButtonPressed();
+    void HandleRolesButtonPressed();
+    void HandleDutiesButtonPressed();
 };
 
 #endif // MANAGEMENU_H
