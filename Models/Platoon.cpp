@@ -7,24 +7,30 @@ Platoon::Platoon(QObject *parent) : QObject(parent)
 
 }
 
+Platoon::Platoon(unsigned int id, QString name, Soldier *leader, Soldier *sergeant, QObject *parent)
+ : QObject(parent), platoonId(id), platoonName(name), platoonLeader(leader), platoonSergeant(sergeant)
+{
+
+}
+
 Soldier *Platoon::GetLeader() const
 {
-    return leader;
+    return platoonLeader;
 }
 
 void Platoon::SetLeader(Soldier *soldier)
 {
-    leader = soldier;
+    platoonLeader = soldier;
 }
 
 Soldier *Platoon::GetSergeant() const
 {
-    return sergeant;
+    return platoonSergeant;
 }
 
 void Platoon::SetSergeant(Soldier *soldier)
 {
-    sergeant = soldier;
+    platoonSergeant = soldier;
 }
 
 Squad *Platoon::GetSquad(unsigned int id) const

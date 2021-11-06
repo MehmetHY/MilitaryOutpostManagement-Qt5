@@ -7,13 +7,16 @@ class Platoon : public QObject
 {
     Q_OBJECT
 private:    // fields
-    class Soldier* leader;
-    Soldier* sergeant;
+    unsigned int platoonId;
+    QString platoonName;
+    class Soldier* platoonLeader;
+    Soldier* platoonSergeant;
     QList<class Squad*> squads;
     QList<class Duty*> duties;
 
 public:     // constructors
     explicit Platoon(QObject *parent = nullptr);
+    explicit Platoon(unsigned int id, QString name, Soldier* leader, Soldier* sergeant, QObject *parent = nullptr);
 
 public:     // methods
     Soldier* GetLeader() const;
@@ -34,8 +37,7 @@ public:     // methods
     void DeleteSquad(Squad* squad);
     void DeleteDuty(Duty* duty);
 
-signals:
-
+    friend class DataManager;
 };
 
 #endif // PLATOON_H

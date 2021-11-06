@@ -13,17 +13,20 @@ public:     // enums
 public:     // constructors
     explicit DataManager(QObject *parent = nullptr);
 
-private:    //fields
-    const QStringList requiredTableNames {"squad", "team", "soldier", "duty"};
-
 private:    // functions
-    void CreateTables() const;
     bool ConnectSQLITE() const;
+    void CreateTables() const;
+    class Soldier* GetSoldier(unsigned int id) const;
+    void LoadSquads(class Platoon* platoon) const;
+    void LoadTeams(class Squad* squad) const;
+    void LoadSoldiers(class Team* team) const;
 
 public:     // methods
     void CreateConnection(DatabaseType type = DatabaseType::SQLITE) const;
     void CloseConnection() const;
     class QSqlQuery* ExecuteQuery(const QString queryString) const;
+
+    class Platoon* GetPlatoon() const;
 
 };
 

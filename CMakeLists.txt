@@ -16,21 +16,41 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Sql REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
+
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        Models/Platoon.h
-        Models/Platoon.cpp
-        Models/Squad.h
-        Models/Squad.cpp
-        Models/Team.h
-        Models/Team.cpp
-        Models/Soldier.h
-        Models/Soldier.cpp
-        Models/Duty.h
-        Models/Duty.cpp
-        Managers/DataManager.h
-        Managers/DataManager.cpp
+
+#        Models/Platoon.h
+#        Models/Platoon.cpp
+
+#        Models/Squad.h
+#        Models/Squad.cpp
+
+#        Models/Team.h
+#        Models/Team.cpp
+
+#        Models/Soldier.h
+#        Models/Soldier.cpp
+
+#        Models/Duty.h
+#        Models/Duty.cpp
+
+#        Managers/DataManager.h
+#        Managers/DataManager.cpp
+
+        Views/mainmenu.cpp
+        Views/mainmenu.h
+        Views/mainmenu.ui
+
+        Views/previewmenu.cpp
+        Views/previewmenu.h
+        Views/previewmenu.ui
+
+        Views/manageMenu.cpp
+        Views/manageMenu.h
+        Views/manageMenu.ui
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

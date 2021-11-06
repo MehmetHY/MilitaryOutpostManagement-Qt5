@@ -12,10 +12,19 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    enum class Menu
+    {
+        MainMenu, PreviewMenu, ManageMenu
+    };
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void ChangeMenu(Menu menu);
+
 private:
     Ui::MainWindow *ui;
+    int mainMenuId;
+    int previewMenuId;
+    int manageMenuId;
 };
 #endif // MAINWINDOW_H
