@@ -18,13 +18,14 @@ public:
         ManageMenu, ManagePlatoonMenu, ManageSquadsMenu, ManageTeamsMenu,
         ManageSoldiersMenu, ManageRanksMenu, ManageRolesMenu, ManageDutiesMenu
     };
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(class PlatoonManager* manager, QWidget *parent = nullptr);
     ~MainWindow();
 
     void ChangeMenu(Menu menu);
 
 private:
     Ui::MainWindow *ui;
+    PlatoonManager* platoonManager;
     int createPlatoonMenuId;
     int mainMenuId;
     int previewMenuId;
@@ -38,5 +39,7 @@ private:
     int manageRanksMenuId;
     int manageRolesMenuId;
     int manageDutiesMenuId;
+
+    void InitializeMenus();
 };
 #endif // MAINWINDOW_H

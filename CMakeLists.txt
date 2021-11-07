@@ -21,23 +21,26 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
 
-#        Models/Platoon.h
-#        Models/Platoon.cpp
+        Models/Platoon.h
+        Models/Platoon.cpp
 
-#        Models/Squad.h
-#        Models/Squad.cpp
+        Models/Squad.h
+        Models/Squad.cpp
 
-#        Models/Team.h
-#        Models/Team.cpp
+        Models/Team.h
+        Models/Team.cpp
 
-#        Models/Soldier.h
-#        Models/Soldier.cpp
+        Models/Soldier.h
+        Models/Soldier.cpp
 
-#        Models/Duty.h
-#        Models/Duty.cpp
+        Models/Duty.h
+        Models/Duty.cpp
 
-#        Managers/DataManager.h
-#        Managers/DataManager.cpp
+        Managers/DataManager.h
+        Managers/DataManager.cpp
+
+        Managers/PlatoonManager.h
+        Managers/PlatoonManager.cpp
 
         Views/mainmenu.cpp
         Views/mainmenu.h

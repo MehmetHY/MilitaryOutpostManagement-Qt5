@@ -14,6 +14,11 @@ DataManager::DataManager(QObject *parent) : QObject(parent)
 
 }
 
+DataManager::~DataManager()
+{
+    CloseConnection();
+}
+
 void DataManager::CreateConnection(DatabaseType type) const
 {
     bool success = false;
@@ -128,11 +133,7 @@ Platoon *DataManager::GetPlatoon() const
     QString queryString = "SELECT * FROM platoon;";
     QSqlQuery* query = ExecuteQuery(queryString);
     Platoon* platoon = nullptr;
-    if (query->size() < 1)
-    {
-        // todo: Redirect to Platoon Creation View
-    }
-    else
+    if (query->size() > 0)
     {
         query->next();
         unsigned int id = query->value(0).toUInt();

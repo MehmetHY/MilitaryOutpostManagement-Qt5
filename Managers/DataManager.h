@@ -12,6 +12,7 @@ public:     // enums
 
 public:     // constructors
     explicit DataManager(QObject *parent = nullptr);
+    ~DataManager();
 
 private:    // functions
     bool ConnectSQLITE() const;

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "Managers/platoonmanager.h"
 #include "Views/createplatoonmenu.h"
 #include "Views/mainmenu.h"
 #include "Views/previewmenu.h"
@@ -14,52 +15,15 @@
 #include "Views/managerolesmenu.h"
 #include "Views/managedutiesmenu.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(class PlatoonManager* manager, QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow), platoonManager(manager)
 {
     ui->setupUi(this);
-
-    CreatePlatoonMenu* createPlatoonMenu = new CreatePlatoonMenu(this);
-    createPlatoonMenuId = ui->stackedWidget->addWidget(createPlatoonMenu);
-
-    MainMenu* mainMenu = new MainMenu(this);
-    mainMenuId = ui->stackedWidget->addWidget(mainMenu);
-
-    PreviewMenu* previewMenu = new PreviewMenu(this);
-    previewMenuId = ui->stackedWidget->addWidget(previewMenu);
-
-    ManageMenu* manageMenu = new ManageMenu(this);
-    manageMenuId = ui->stackedWidget->addWidget(manageMenu);
-
-    PreviewHierarchyMenu* previewHierarchyMenu = new PreviewHierarchyMenu(this);
-    previewHierarchyMenuId = ui->stackedWidget->addWidget(previewHierarchyMenu);
-
-    PreviewDutiesMenu* previewDutiesMenu = new PreviewDutiesMenu(this);
-    previewDutiesMenuId = ui->stackedWidget->addWidget(previewDutiesMenu);
-
-    ManagePlatoonMenu* managePlatoonMenu = new ManagePlatoonMenu(this);
-    managePlatoonMenuId = ui->stackedWidget->addWidget(managePlatoonMenu);
-
-    ManageSquadsMenu* manageSquadsMenu = new ManageSquadsMenu(this);
-    manageSquadsMenuId = ui->stackedWidget->addWidget(manageSquadsMenu);
-
-    ManageTeamsMenu* manageTeamsMenu = new ManageTeamsMenu(this);
-    manageTeamsMenuId = ui->stackedWidget->addWidget(manageTeamsMenu);
-
-    ManageSoldiersMenu* manageSoldiersMenu = new ManageSoldiersMenu(this);
-    manageSoldiersMenuId = ui->stackedWidget->addWidget(manageSoldiersMenu);
-
-    ManageRanksMenu* manageRanksMenu = new ManageRanksMenu(this);
-    manageRanksMenuId = ui->stackedWidget->addWidget(manageRanksMenu);
-
-    ManageRolesMenu* manageRolesMenu = new ManageRolesMenu(this);
-    manageRolesMenuId = ui->stackedWidget->addWidget(manageRolesMenu);
-
-    ManageDutiesMenu* manageDutiesMenu = new ManageDutiesMenu(this);
-    manageDutiesMenuId = ui->stackedWidget->addWidget(manageDutiesMenu);
-
-    ChangeMenu(Menu::CreatePlatoonMenu);
+    InitializeMenus();
+    if (platoonManager->GetPlatoon())
+        ChangeMenu(Menu::MainMenu);
+    else
+        ChangeMenu(Menu::CreatePlatoonMenu);
 }
 
 MainWindow::~MainWindow()
@@ -113,4 +77,47 @@ void MainWindow::ChangeMenu(Menu menu)
         break;
     }
     ui->stackedWidget->setCurrentIndex(id);
+}
+
+void MainWindow::InitializeMenus()
+{
+    CreatePlatoonMenu* createPlatoonMenu = new CreatePlatoonMenu(this);
+    createPlatoonMenuId = ui->stackedWidget->addWidget(createPlatoonMenu);
+
+    MainMenu* mainMenu = new MainMenu(this);
+    mainMenuId = ui->stackedWidget->addWidget(mainMenu);
+
+    PreviewMenu* previewMenu = new PreviewMenu(this);
+    previewMenuId = ui->stackedWidget->addWidget(previewMenu);
+
+    ManageMenu* manageMenu = new ManageMenu(this);
+    manageMenuId = ui->stackedWidget->addWidget(manageMenu);
+
+    PreviewHierarchyMenu* previewHierarchyMenu = new PreviewHierarchyMenu(this);
+    previewHierarchyMenuId = ui->stackedWidget->addWidget(previewHierarchyMenu);
+
+    PreviewDutiesMenu* previewDutiesMenu = new PreviewDutiesMenu(this);
+    previewDutiesMenuId = ui->stackedWidget->addWidget(previewDutiesMenu);
+
+    ManagePlatoonMenu* managePlatoonMenu = new ManagePlatoonMenu(this);
+    managePlatoonMenuId = ui->stackedWidget->addWidget(managePlatoonMenu);
+
+    ManageSquadsMenu* manageSquadsMenu = new ManageSquadsMenu(this);
+    manageSquadsMenuId = ui->stackedWidget->addWidget(manageSquadsMenu);
+
+    ManageTeamsMenu* manageTeamsMenu = new ManageTeamsMenu(this);
+    manageTeamsMenuId = ui->stackedWidget->addWidget(manageTeamsMenu);
+
+    ManageSoldiersMenu* manageSoldiersMenu = new ManageSoldiersMenu(this);
+    manageSoldiersMenuId = ui->stackedWidget->addWidget(manageSoldiersMenu);
+
+    ManageRanksMenu* manageRanksMenu = new ManageRanksMenu(this);
+    manageRanksMenuId = ui->stackedWidget->addWidget(manageRanksMenu);
+
+    ManageRolesMenu* manageRolesMenu = new ManageRolesMenu(this);
+    manageRolesMenuId = ui->stackedWidget->addWidget(manageRolesMenu);
+
+    ManageDutiesMenu* manageDutiesMenu = new ManageDutiesMenu(this);
+    manageDutiesMenuId = ui->stackedWidget->addWidget(manageDutiesMenu);
+
 }
