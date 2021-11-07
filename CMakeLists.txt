@@ -39,8 +39,20 @@ set(PROJECT_SOURCES
         Managers/DataManager.h
         Managers/DataManager.cpp
 
-        Managers/PlatoonManager.h
-        Managers/PlatoonManager.cpp
+        Managers/platoonmanager.h
+        Managers/platoonmanager.cpp
+
+        Managers/squadmanager.h
+        Managers/squadmanager.cpp
+
+        Managers/teammanager.h
+        Managers/teammanager.cpp
+
+        Managers/soldiermanager.h
+        Managers/soldiermanager.cpp
+
+        Managers/dutymanager.h
+        Managers/dutymanager.cpp
 
         Views/mainmenu.cpp
         Views/mainmenu.h
@@ -50,9 +62,9 @@ set(PROJECT_SOURCES
         Views/previewmenu.h
         Views/previewmenu.ui
 
-        Views/manageMenu.cpp
-        Views/manageMenu.h
-        Views/manageMenu.ui
+        Views/managemenu.cpp
+        Views/managemenu.h
+        Views/managemenu.ui
 
         Views/previewhierarchymenu.cpp
         Views/previewhierarchymenu.h

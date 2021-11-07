@@ -9,17 +9,13 @@ class Squad : public QObject
 private:    // fields
     unsigned int squadId;
     QString squadName;
-    QList<class Team*> teams;
+
+    class TeamManager* teamManager;
 
 public:     // constructors
-    explicit Squad(QObject *parent = nullptr);
-    explicit Squad(unsigned int id, QString name, QObject *parent = nullptr);
+    explicit Squad(unsigned int id, QString name, class Platoon *parent = nullptr);
 
 public:     // properties
-    unsigned int GetId() const;
-    QString GetName() const;
-
-    friend class DataManager;
 };
 
 #endif // SQUAD_H

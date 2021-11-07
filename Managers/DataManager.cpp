@@ -39,6 +39,8 @@ void DataManager::CreateConnection(DatabaseType type) const
     }
     if (success)
         CreateTables();
+    else
+        qDebug() << "Database connection failed!";
 }
 
 void DataManager::CloseConnection() const
@@ -46,69 +48,10 @@ void DataManager::CloseConnection() const
     QSqlDatabase::database().close();
 }
 
-void DataManager::CreateTables() const
-{
-    QString queryString = R"(
--- squad
-CREATE TABLE IF NOT EXISTS squad (
-    id      INTEGER         PRIMARY KEY    AUTOINCREMENT,
-    name    STRING (50)     UNIQUE         NOT NULL
-);
-
--- team
-CREATE TABLE IF NOT EXISTS team (
-    id          INTEGER         PRIMARY KEY             AUTOINCREMENT,
-    name        STRING (50)     NOT NULL                UNIQUE,
-    squad_id    INTEGER         REFERENCES squad (id)   NOT NULL
-);
-
--- rank
-CREATE TABLE IF NOT EXISTS rank (
-    id      INTEGER        PRIMARY KEY    AUTOINCREMENT,
-    name    STRING (50)    NOT NULL       UNIQUE
-);
-
--- role
-CREATE TABLE IF NOT EXISTS role (
-    id      INTEGER        PRIMARY KEY    AUTOINCREMENT,
-    name    STRING (50)    NOT NULL       UNIQUE
-);
-
--- soldier
-CREATE TABLE IF NOT EXISTS soldier (
-    id          INTEGER         PRIMARY KEY             AUTOINCREMENT,
-    name        STRING (50)     UNIQUE                  NOT NULL,
-    rank_id     INTEGER         REFERENCES rank (id)    NOT NULL,
-    role_id     INTEGER         REFERENCES role (id)    NOT NULL,
-    team_id     INTEGER         REFERENCES team (id)    DEFAULT NULL
-);
-
--- duty
-CREATE TABLE IF NOT EXISTS duty (
-    id          INTEGER         PRIMARY KEY                 AUTOINCREMENT,
-    name        STRING (50)     NOT NULL,
-    soldier_id  INTEGER         REFERENCES soldier (id)     NOT NULL,
-    start_date  DATETIME,
-    end_date    DATETIME
-);
-
--- platoon
-CREATE TABLE IF NOT EXISTS platoon (
-    id          INTEGER         PRIMARY KEY                 AUTOINCREMENT,
-    name        STRING (50)     UNIQUE                      NOT NULL,
-    leader_id   INTEGER         REFERENCES soldier (id),
-    sergeant_id INTEGER         REFERENCES soldier (id)
-);
-    )";
-
-    QSqlQuery* query = ExecuteQuery(queryString);
-    delete query;
-}
-
 bool DataManager::ConnectSQLITE() const
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("./Data/MilitaryOutput.db");
+    db.setDatabaseName("./MilitaryOutput.db");
     if (!db.open())
     {
         qDebug() << "Failed to connect to the database.";
@@ -117,107 +60,117 @@ bool DataManager::ConnectSQLITE() const
     return true;
 }
 
-QSqlQuery *DataManager::ExecuteQuery(const QString queryString) const
+bool DataManager::ExecuteQuery(QSqlQuery& outQuery, const QString queryString) const
 {
-    QSqlQuery* query = new QSqlQuery();
-    if (!query->exec(queryString))
+    if (!outQuery.exec(queryString))
     {
         qDebug() << "Query failed: " << queryString;
-        qDebug() << query->lastError().text();
+        qDebug() << outQuery.lastError().text();
+        return false;
     }
-    return query;
+    return true;
 }
 
-Platoon *DataManager::GetPlatoon() const
+void DataManager::CreateTables() const
 {
-    QString queryString = "SELECT * FROM platoon;";
-    QSqlQuery* query = ExecuteQuery(queryString);
-    Platoon* platoon = nullptr;
-    if (query->size() > 0)
-    {
-        query->next();
-        unsigned int id = query->value(0).toUInt();
-        QString name = query->value(1).toString();
-        unsigned int leader_id = NULL;
-        Soldier* leader = nullptr;
-        if (!query->value(2).isNull())
-        {
-            leader_id = query->value(2).toUInt();
-            leader = GetSoldier(leader_id);
-        }
-        unsigned int sergeant_id = NULL;
-        Soldier* sergeant = nullptr;
-        if (!query->value(3).isNull())
-        {
-            sergeant_id = query->value(3).toUInt();
-            sergeant = GetSoldier(sergeant_id);
-        }
-        platoon = new Platoon(id, name, leader, sergeant);
-    }
-    delete query;
-    return platoon;
+    CreateSquadTable();
+    CreateTeamTable();
+    CreateRankTable();
+    CreateRoleTable();
+    CreateSoldierTable();
+    CreateDutyTable();
+    CreatePlatoonTable();
 }
 
-Soldier *DataManager::GetSoldier(unsigned int id) const
+void DataManager::CreateSquadTable() const
 {
-    Soldier* soldier = nullptr;
-    QString queryString = "SELECT * FROM soldier WHERE id = " + QString::number(id) + ";";
-    QSqlQuery* query = ExecuteQuery(queryString);
-    if (query->size() > 0)
-    {
-        query->next();
-        unsigned int id = query->value(0).toUInt();
-        QString name = query->value(1).toString();
-        unsigned int rankId = query->value(2).toUInt();
-        unsigned int roleId = query->value(3).toUInt();
-        soldier = new Soldier(id, name, rankId, roleId);
-    }
-    delete query;
-
-    return soldier;
+    QString queryString =
+            "CREATE TABLE IF NOT EXISTS squad "
+            "("
+            "   id      INTEGER         PRIMARY KEY    AUTOINCREMENT,"
+            "   name    STRING (50)     UNIQUE         NOT NULL"
+            ");";
+    QSqlQuery query;
+    ExecuteQuery(query, queryString);
 }
 
-void DataManager::LoadSquads(Platoon* platoon) const
+void DataManager::CreateTeamTable() const
 {
-    platoon->squads.clear();
-    QSqlQuery* query = ExecuteQuery(QString("SELECT * FROM squad;"));
-    while (query->next())
-    {
-        unsigned int id = query->value(0).toUInt();
-        QString name = query->value(1).toString();
-        platoon->squads.append(new Squad(id, name, platoon));
-    }
-    delete query;
+    QString queryString =
+            "CREATE TABLE IF NOT EXISTS team "
+            "("
+            "    id          INTEGER         PRIMARY KEY             AUTOINCREMENT,"
+            "    name        STRING (50)     NOT NULL                UNIQUE,"
+            "    squad_id    INTEGER         REFERENCES squad (id)   NOT NULL"
+            ");";
+    QSqlQuery query;
+    ExecuteQuery(query, queryString);
 }
 
-void DataManager::LoadTeams(Squad *squad) const
+void DataManager::CreateRankTable() const
 {
-    squad->teams.clear();
-    QString queryString = "SELECT * FROM team WHERE squad_id = " + QString::number(squad->squadId) + ";";
-    QSqlQuery* query = ExecuteQuery(queryString);
-    while (query->next())
-    {
-        unsigned int id = query->value(0).toUInt();
-        QString name = query->value(1).toString();
-        squad->teams.append(new Team(id, name, squad));
-    }
-    delete query;
+    QString queryString =
+            "CREATE TABLE IF NOT EXISTS rank"
+            "("
+            "    id      INTEGER        PRIMARY KEY    AUTOINCREMENT,"
+            "    name    STRING (50)    NOT NULL       UNIQUE"
+            ");";
+    QSqlQuery query;
+    ExecuteQuery(query, queryString);
 }
 
-void DataManager::LoadSoldiers(Team *team) const
+void DataManager::CreateRoleTable() const
 {
-    team->soldiers.clear();
-    QString queryString = "SELECT * FROM soldier WHERE team_id = " + QString::number(team->teamId) + ";";
-    QSqlQuery* query = ExecuteQuery(queryString);
-    while (query->next())
-    {
-        unsigned int id = query->value(0).toUInt();
-        QString name = query->value(1).toString();
-        unsigned int rankId = query->value(2).toUInt();
-        unsigned int roleId = query->value(3).toUInt();
-        team->soldiers.append(new Soldier(id, name, rankId, roleId, team));
-    }
-    delete query;
+    QString queryString =
+            "CREATE TABLE IF NOT EXISTS role"
+            "("
+            "    id      INTEGER        PRIMARY KEY    AUTOINCREMENT,"
+            "    name    STRING (50)    NOT NULL       UNIQUE"
+            ");";
+    QSqlQuery query;
+    ExecuteQuery(query, queryString);
 }
 
+void DataManager::CreateSoldierTable() const
+{
+    QString queryString =
+            "CREATE TABLE IF NOT EXISTS soldier "
+            "("
+            "    id          INTEGER         PRIMARY KEY             AUTOINCREMENT,"
+            "    name        STRING (50)     UNIQUE                  NOT NULL,"
+            "    rank_id     INTEGER         REFERENCES rank (id)    NOT NULL,"
+            "    role_id     INTEGER         REFERENCES role (id)    NOT NULL,"
+            "    team_id     INTEGER         REFERENCES team (id)    DEFAULT NULL"
+            ");";
+    QSqlQuery query;
+    ExecuteQuery(query, queryString);
+}
 
+void DataManager::CreateDutyTable() const
+{
+    QString queryString =
+            "CREATE TABLE IF NOT EXISTS duty "
+            "("
+            "    id          INTEGER         PRIMARY KEY                 AUTOINCREMENT,"
+            "    name        STRING (50)     NOT NULL,"
+            "    soldier_id  INTEGER         REFERENCES soldier (id)     NOT NULL,"
+            "    start_date  DATETIME,"
+            "    end_date    DATETIME"
+            ");";
+    QSqlQuery query;
+    ExecuteQuery(query, queryString);
+}
+
+void DataManager::CreatePlatoonTable() const
+{
+    QString queryString =
+            "CREATE TABLE IF NOT EXISTS platoon "
+            "("
+            "    id          INTEGER         PRIMARY KEY                 AUTOINCREMENT,"
+            "    name        STRING (50)     UNIQUE                      NOT NULL,"
+            "    leader_id   INTEGER         REFERENCES soldier (id),"
+            "    sergeant_id INTEGER         REFERENCES soldier (id)"
+            ");";
+    QSqlQuery query;
+    ExecuteQuery(query, queryString);
+}

@@ -9,11 +9,14 @@ class PlatoonManager : public QObject
 private:
     class Platoon* platoon;
     class DataManager* dataManager;
+
+    void LoadPlatoonFromDB();
 public:
     explicit PlatoonManager(DataManager* manager, QObject *parent = nullptr);
 
+    bool IsPlatoonExist() const;
     Platoon* GetPlatoon() const;
-
+    void CreateNewPlatoon(const QString name);
 };
 
 #endif // PLATOONMANAGER_H

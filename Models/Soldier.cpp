@@ -1,16 +1,6 @@
 #include "Soldier.h"
 
-Soldier::Soldier(QObject *parent) : QObject(parent)
+Soldier::Soldier(unsigned int id, QString name, unsigned int rankId, unsigned int roleId, QObject *parent) : QObject(parent), soldierId(id), soldierName(name), soldierRankId(rankId), soldierRoleId(roleId)
 {
 
-}
-
-int Soldier::GetId() const
-{
-    return soldierId;
-}
-
-QString Soldier::GetName() const
-{
-    return soldierName;
 }

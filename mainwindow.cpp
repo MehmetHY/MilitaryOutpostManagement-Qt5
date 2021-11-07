@@ -20,7 +20,7 @@ MainWindow::MainWindow(class PlatoonManager* manager, QWidget *parent)
 {
     ui->setupUi(this);
     InitializeMenus();
-    if (platoonManager->GetPlatoon())
+    if (platoonManager->IsPlatoonExist())
         ChangeMenu(Menu::MainMenu);
     else
         ChangeMenu(Menu::CreatePlatoonMenu);

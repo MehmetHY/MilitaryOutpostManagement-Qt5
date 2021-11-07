@@ -17,18 +17,18 @@ public:     // constructors
 private:    // functions
     bool ConnectSQLITE() const;
     void CreateTables() const;
-    class Soldier* GetSoldier(unsigned int id) const;
-    void LoadSquads(class Platoon* platoon) const;
-    void LoadTeams(class Squad* squad) const;
-    void LoadSoldiers(class Team* team) const;
+    void CreateSquadTable() const;
+    void CreateTeamTable() const;
+    void CreateRankTable() const;
+    void CreateRoleTable() const;
+    void CreateSoldierTable() const;
+    void CreateDutyTable() const;
+    void CreatePlatoonTable() const;
 
 public:     // methods
     void CreateConnection(DatabaseType type = DatabaseType::SQLITE) const;
     void CloseConnection() const;
-    class QSqlQuery* ExecuteQuery(const QString queryString) const;
-
-    class Platoon* GetPlatoon() const;
-
+    bool ExecuteQuery(class QSqlQuery& outQuery, const QString queryString) const;
 };
 
 #endif // DATAMANAGER_H

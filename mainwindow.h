@@ -23,6 +23,8 @@ public:
 
     void ChangeMenu(Menu menu);
 
+    friend class CreatePlatoonMenu;
+
 private:
     Ui::MainWindow *ui;
     PlatoonManager* platoonManager;
