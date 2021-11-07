@@ -14,7 +14,9 @@ bool PlatoonManager::IsPlatoonExist() const
     const QString queryString = "SELECT * FROM platoon;";
     QSqlQuery query;
     dataManager->ExecuteQuery(query, queryString);
-    return query.size() > 0;
+    if (query.next())
+        return true;
+    return false;
 }
 
 void PlatoonManager::LoadPlatoonFromDB()
@@ -36,7 +38,9 @@ void PlatoonManager::CreateNewPlatoon(const QString name)
 {
     QString queryString =
             "INSERT INTO platoon"
-            "(" + name + ");";
+            "   (name)"
+            "VALUES"
+            "   (\"" + name + "\");";
     QSqlQuery query;
     if(!dataManager->ExecuteQuery(query, queryString))
         return;
