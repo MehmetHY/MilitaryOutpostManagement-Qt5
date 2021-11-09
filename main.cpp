@@ -7,9 +7,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    DataManager dataManager;
-    dataManager.CreateConnection();
-    PlatoonManager platoonManager(&dataManager);
+    DataManager::CreateConnection();
+    PlatoonManager platoonManager;
     MainWindow w(&platoonManager);
     w.show();
     return a.exec();

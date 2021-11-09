@@ -79,6 +79,11 @@ void MainWindow::ChangeMenu(Menu menu)
     ui->stackedWidget->setCurrentIndex(id);
 }
 
+PlatoonManager *MainWindow::GetPlatoonManager() const
+{
+    return platoonManager;
+}
+
 void MainWindow::InitializeMenus()
 {
     CreatePlatoonMenu* createPlatoonMenu = new CreatePlatoonMenu(this);

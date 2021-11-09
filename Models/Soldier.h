@@ -14,7 +14,9 @@ private:    // fields
     unsigned int soldierRoleId;
 
 public:     // constructors
-    explicit Soldier(unsigned int id, QString name, unsigned int rankId, unsigned int roleId, QObject *parent = nullptr);
+    explicit Soldier(unsigned int id, QString name, unsigned int rankId, unsigned int roleId, class Team *parent = nullptr);
+
+    QString GetName() const;
 
 public:     // properties
 };

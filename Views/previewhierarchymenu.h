@@ -20,6 +20,7 @@ private:
     MainWindow* mainWindow;
 
     void HandleBackButtonPressed();
+    void SetupHierarchy();
 };
 
 #endif // PREVIEWHIERARCHYMENU_H

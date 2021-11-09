@@ -1,34 +1,33 @@
 #ifndef DATAMANAGER_H
 #define DATAMANAGER_H
 
-#include <QObject>
+#include <QString>
 
-class DataManager : public QObject
+class DataManager
 {
-    Q_OBJECT
-
 public:     // enums
     enum class DatabaseType { JSON, SQLITE, MYSQL, MSSQL };
 
 public:     // constructors
-    explicit DataManager(QObject *parent = nullptr);
-    ~DataManager();
+    explicit DataManager() = delete;
 
 private:    // functions
-    bool ConnectSQLITE() const;
-    void CreateTables() const;
-    void CreateSquadTable() const;
-    void CreateTeamTable() const;
-    void CreateRankTable() const;
-    void CreateRoleTable() const;
-    void CreateSoldierTable() const;
-    void CreateDutyTable() const;
-    void CreatePlatoonTable() const;
+    static bool ConnectSQLITE();
+    static void CreateTables();
+    static void CreatePlatoonTable();
+    static void CreateSquadTable();
+    static void CreateTeamTable();
+    static void CreateRankTable();
+    static void CreateRoleTable();
+    static void CreateSoldierTable();
+    static void CreateDutyTable();
+    static void InsertRanks();
+    static void InsertRoles();
 
 public:     // methods
-    void CreateConnection(DatabaseType type = DatabaseType::SQLITE) const;
-    void CloseConnection() const;
-    bool ExecuteQuery(class QSqlQuery& outQuery, const QString queryString) const;
+    static void CreateConnection(const DatabaseType type = DatabaseType::SQLITE);
+    static void CloseConnection();
+    static bool ExecuteQuery(class QSqlQuery& outQuery, const QString queryString);
 };
 
 #endif // DATAMANAGER_H

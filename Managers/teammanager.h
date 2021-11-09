@@ -8,9 +8,14 @@ class TeamManager : public QObject
     Q_OBJECT
 
 private:
-    QList<class Team*> teams;
+    class Squad* squad;
+    QList<class Team*>* teams;
+    void LoadTeamsFromDB();
 public:
     explicit TeamManager(class Squad *parent = nullptr);
+    ~TeamManager();
+
+    QList<Team*>* GetTeams() const;
 
 signals:
 

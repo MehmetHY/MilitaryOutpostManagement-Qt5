@@ -9,17 +9,18 @@ class Platoon : public QObject
 private:    // fields
     unsigned int platoonId;
     QString platoonName;
-    class Soldier* platoonLeader;
-    Soldier* platoonSergeant;
 
     class SquadManager* squadManager;
     class DutyManager* dutyManager;
 
 public:     // constructors
-    explicit Platoon(unsigned int id, const QString name, QObject *parent = nullptr);
+    explicit Platoon(const unsigned int id, const QString name, QObject *parent = nullptr);
 
 public:     // methods
+    QString GetName() const;
     void SetName(const QString name);
+
+    SquadManager* GetSquadManager() const;
 };
 
 #endif // PLATOON_H

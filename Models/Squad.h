@@ -14,6 +14,9 @@ private:    // fields
 
 public:     // constructors
     explicit Squad(unsigned int id, QString name, class Platoon *parent = nullptr);
+    unsigned int GetId() const;
+    QString GetName() const;
+    TeamManager* GetTeamManager() const;
 
 public:     // properties
 };

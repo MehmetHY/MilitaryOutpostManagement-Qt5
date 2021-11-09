@@ -8,12 +8,16 @@ class SquadManager : public QObject
     Q_OBJECT
 
 private:
-    QList<class Squad*> squads;
+    class Platoon* platoon;
+    QList<class Squad*>* squads;
+
+    void LoadSquadsFromDB();
 public:
-    explicit SquadManager(class Platoon *parent = nullptr);
+    explicit SquadManager(Platoon *parent = nullptr);
+    ~SquadManager();
 
-signals:
-
+    int GetSquadCount() const;
+    QList<Squad*>* GetSquads() const;
 };
 
 #endif // SQUADMANAGER_H

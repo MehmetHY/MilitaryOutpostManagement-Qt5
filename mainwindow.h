@@ -22,6 +22,7 @@ public:
     ~MainWindow();
 
     void ChangeMenu(Menu menu);
+    PlatoonManager* GetPlatoonManager() const;
 
     friend class CreatePlatoonMenu;
 

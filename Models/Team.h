@@ -20,7 +20,9 @@ public:     // constructors
 
 public:     // properties
     unsigned int GetId() const;
-    QString GetName() const;
+    QString GetName() const;    
+    SoldierManager* GetSoldierManager() const;
+
 };
 
 #endif // TEAM_H

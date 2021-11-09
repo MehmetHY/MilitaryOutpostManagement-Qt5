@@ -8,11 +8,15 @@ class SoldierManager : public QObject
     Q_OBJECT
 
 private:
-    QList<class Soldier*> soldiers;
-public:
-    explicit SoldierManager(class Team *parent = nullptr);
+    class Team* team;
+    QList<class Soldier*>* soldiers;
 
-signals:
+    void LoadSoldiersFromDB();
+public:
+    explicit SoldierManager(Team *parent = nullptr);
+    ~SoldierManager();
+
+    QList<Soldier*>* GetSoldiers() const;
 
 };
 

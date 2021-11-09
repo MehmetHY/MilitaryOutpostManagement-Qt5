@@ -54,6 +54,9 @@ set(PROJECT_SOURCES
         Managers/dutymanager.h
         Managers/dutymanager.cpp
 
+        Managers/rankmanager.h
+        Managers/rankmanager.cpp
+
         Views/mainmenu.cpp
         Views/mainmenu.h
         Views/mainmenu.ui
