@@ -1,6 +1,17 @@
 #include "rankmanager.h"
+#include "../Models/rank.h"
 
-RankManager::RankManager(QObject *parent) : QObject(parent)
+void RankManager::CreateRank(const unsigned int id, const QString name, const QString abbr)
+{
+    ranks[id] = new Rank(name, abbr);
+}
+
+QString RankManager::GetName(const unsigned int id)
+{
+
+}
+
+QString RankManager::GetAbbr(const unsigned int id)
 {
 
 }

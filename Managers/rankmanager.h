@@ -1,18 +1,17 @@
 #ifndef RANKMANAGER_H
 #define RANKMANAGER_H
 
-#include <QObject>
+#include <QString>
+#include <QMap>
 
-class RankManager : public QObject
+class RankManager
 {
-    Q_OBJECT
 private:
-    QMap<int, QString>*
+    static QMap<unsigned int, class Rank*> ranks;
 public:
-
-    explicit RankManager(QObject *parent = nullptr);
-
-signals:
+    static void CreateRank(const unsigned int id, const QString name, const QString abbr);
+    static QString GetName(const unsigned int id);
+    static QString GetAbbr(const unsigned int id);
 
 };
 

@@ -41,7 +41,7 @@ void DataManager::CloseConnection()
 bool DataManager::ConnectSQLITE()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("./MilitaryOutput.db");
+    db.setDatabaseName("./MilitaryOutpost.db");
     if (!db.open())
     {
         qDebug() << "Failed to connect to the database.";

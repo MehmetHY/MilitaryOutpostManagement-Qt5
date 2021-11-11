@@ -36,6 +36,9 @@ set(PROJECT_SOURCES
         Models/Duty.h
         Models/Duty.cpp
 
+        Models/rank.h
+        Models/rank.cpp
+
         Managers/DataManager.h
         Managers/DataManager.cpp
 
