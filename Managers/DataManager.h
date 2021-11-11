@@ -25,6 +25,8 @@ private:    // functions
     static void InsertRoles();
 
 public:     // methods
+    static void Initialize();
+    static void End();
     static void CreateConnection(const DatabaseType type = DatabaseType::SQLITE);
     static void CloseConnection();
     static bool ExecuteQuery(class QSqlQuery& outQuery, const QString queryString);

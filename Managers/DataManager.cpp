@@ -38,6 +38,16 @@ void DataManager::CloseConnection()
     QSqlDatabase::database().close();
 }
 
+void DataManager::Initialize()
+{
+    CreateConnection(DatabaseType::SQLITE);
+}
+
+void DataManager::End()
+{
+    CloseConnection();
+}
+
 bool DataManager::ConnectSQLITE()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");

@@ -1,15 +1,17 @@
 #include "mainwindow.h"
 
 #include <QApplication>
-#include "Managers/DataManager.h"
+#include "Managers/staticmanager.h"
 #include "Managers/platoonmanager.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    DataManager::CreateConnection();
+    StaticManager::InitializeStaticManagers();
     PlatoonManager platoonManager;
     MainWindow w(&platoonManager);
     w.show();
-    return a.exec();
+    int exitValue = a.exec();
+    StaticManager::EndStaticManagers();
+    return exitValue;
 }
