@@ -3,29 +3,35 @@
 
 void RankManager::Initialize()
 {
-    ranks = new QMap<unsigned int, Rank*>();
 }
 
-void RankManager::CreateRank(const unsigned int id, const QString name, const QString abbr)
+void RankManager::End()
 {
-    (*ranks)[id] = new Rank(name, abbr);
+//    DeleteRanks();
+}
+
+void RankManager::CreateRank(unsigned int id, const QString name, const QString abbr)
+{
+//    ranks.insert(id, new Rank(name, abbr));
 }
 
 void RankManager::DeleteRanks()
 {
-    foreach(Rank* rank, *ranks)
-    {
-        delete rank;
-    }
-    ranks->clear();
+//    foreach(Rank* rank, ranks)
+//    {
+//        delete rank;
+//    }
+//    ranks.clear();
 }
 
-QString RankManager::GetName(const unsigned int id)
+QString RankManager::GetName(unsigned int id)
 {
-    return (*ranks)[id]->GetName();
+//    return ranks[id]->GetName();
+    return "";
 }
 
-QString RankManager::GetAbbr(const unsigned int id)
+QString RankManager::GetAbbr(unsigned int id)
 {
-    return (*ranks)[id]->GetAbbr();
+//    return ranks[id]->GetAbbr();
+    return "";
 }

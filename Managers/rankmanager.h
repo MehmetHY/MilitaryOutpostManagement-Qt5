@@ -7,16 +7,16 @@
 class RankManager
 {
 private:
-    static QMap<unsigned int, class Rank*>* ranks;
 
-    static void CreateRank(const unsigned int id, const QString name, const QString abbr);
+    static void CreateRank(unsigned int id, const QString name, const QString abbr);
     static void DeleteRanks();
 
 public:
+//    static QMap<unsigned int, class Rank*> ranks;
     static void Initialize();
     static void End();
-    static QString GetName(const unsigned int id);
-    static QString GetAbbr(const unsigned int id);
+    static QString GetName(unsigned int id);
+    static QString GetAbbr(unsigned int id);
 
 };
 

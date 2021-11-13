@@ -1,28 +1,12 @@
 #ifndef TEAM_H
 #define TEAM_H
 
-#include <QObject>
 
-class Squad;
-
-class Team : public QObject
+class Team
 {
-    Q_OBJECT
+private:
 
-private:    // fields
-    unsigned int teamId;
-    QString teamName;
-
-    class SoldierManager* soldierManager;
-
-public:     // constructors
-    explicit Team(unsigned int id, QString name, class Squad *parent = nullptr);
-
-public:     // properties
-    unsigned int GetId() const;
-    QString GetName() const;    
-    SoldierManager* GetSoldierManager() const;
-
+public:
 };
 
 #endif // TEAM_H

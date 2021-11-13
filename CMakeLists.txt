@@ -21,26 +21,20 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
 
-        Models/Platoon.h
-        Models/Platoon.cpp
+        Models/platoon.h
+        Models/platoon.cpp
 
-        Models/Squad.h
-        Models/Squad.cpp
+        Models/squad.h
+        Models/squad.cpp
 
-        Models/Team.h
-        Models/Team.cpp
+        Models/team.h
+        Models/team.cpp
 
-        Models/Soldier.h
-        Models/Soldier.cpp
+        Models/soldier.h
+        Models/soldier.cpp
 
-        Models/Duty.h
-        Models/Duty.cpp
-
-        Models/rank.h
-        Models/rank.cpp
-
-        Managers/staticmanager.h
-        Managers/staticmanager.cpp
+        Models/duty.h
+        Models/duty.cpp
 
         Managers/DataManager.h
         Managers/DataManager.cpp
@@ -62,6 +56,9 @@ set(PROJECT_SOURCES
 
         Managers/rankmanager.h
         Managers/rankmanager.cpp
+
+        Managers/staticmanager.h
+        Managers/staticmanager.cpp
 
         Views/mainmenu.cpp
         Views/mainmenu.h

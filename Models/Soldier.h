@@ -1,24 +1,23 @@
 #ifndef SOLDIER_H
 #define SOLDIER_H
 
-#include <QObject>
+#include <QString>
 
-class Soldier : public QObject
+class Soldier
 {
-    Q_OBJECT
+private:
+    QString name;
+    QString rank;
+    QString role;
+public:
+    Soldier(const QString &name, const QString &rank, const QString &role);
 
-private:    // fields
-    unsigned int soldierId;
-    QString soldierName;
-    unsigned int soldierRankId;
-    unsigned int soldierRoleId;
-
-public:     // constructors
-    explicit Soldier(unsigned int id, QString name, unsigned int rankId, unsigned int roleId, class Team *parent = nullptr);
-
-    QString GetName() const;
-
-public:     // properties
+    const QString &getName() const;
+    void setName(const QString &newName);
+    const QString &getRank() const;
+    void setRank(const QString &newRank);
+    const QString &getRole() const;
+    void setRole(const QString &newRole);
 };
 
 #endif // SOLDIER_H

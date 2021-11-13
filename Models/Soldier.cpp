@@ -1,12 +1,35 @@
-#include "Soldier.h"
-#include "Team.h"
+#include "soldier.h"
 
-Soldier::Soldier(unsigned int id, QString name, unsigned int rankId, unsigned int roleId, Team *parent) : QObject(parent), soldierId(id), soldierName(name), soldierRankId(rankId), soldierRoleId(roleId)
+Soldier::Soldier(const QString &name, const QString &rank, const QString &role)
+    : name(name), rank(rank), role(role)
+{}
+
+const QString &Soldier::getRank() const
 {
-
+    return rank;
 }
 
-QString Soldier::GetName() const
+void Soldier::setRank(const QString &newRank)
 {
-    return soldierName;
+    rank = newRank;
+}
+
+const QString &Soldier::getRole() const
+{
+    return role;
+}
+
+void Soldier::setRole(const QString &newRole)
+{
+    role = newRole;
+}
+
+const QString &Soldier::getName() const
+{
+    return name;
+}
+
+void Soldier::setName(const QString &newName)
+{
+    name = newName;
 }
