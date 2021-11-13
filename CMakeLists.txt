@@ -36,82 +36,11 @@ set(PROJECT_SOURCES
         Models/duty.h
         Models/duty.cpp
 
-        Managers/DataManager.h
-        Managers/DataManager.cpp
+        Data/datamanager.h
+        Data/datamanager.cpp
 
-        Managers/platoonmanager.h
-        Managers/platoonmanager.cpp
-
-        Managers/squadmanager.h
-        Managers/squadmanager.cpp
-
-        Managers/teammanager.h
-        Managers/teammanager.cpp
-
-        Managers/soldiermanager.h
-        Managers/soldiermanager.cpp
-
-        Managers/dutymanager.h
-        Managers/dutymanager.cpp
-
-        Managers/rankmanager.h
-        Managers/rankmanager.cpp
-
-        Managers/staticmanager.h
-        Managers/staticmanager.cpp
-
-        Views/mainmenu.cpp
-        Views/mainmenu.h
-        Views/mainmenu.ui
-
-        Views/previewmenu.cpp
-        Views/previewmenu.h
-        Views/previewmenu.ui
-
-        Views/managemenu.cpp
-        Views/managemenu.h
-        Views/managemenu.ui
-
-        Views/previewhierarchymenu.cpp
-        Views/previewhierarchymenu.h
-        Views/previewhierarchymenu.ui
-
-        Views/previewdutiesmenu.cpp
-        Views/previewdutiesmenu.h
-        Views/previewdutiesmenu.ui
-
-        Views/manageplatoonmenu.cpp
-        Views/manageplatoonmenu.h
-        Views/manageplatoonmenu.ui
-
-        Views/managesquadsmenu.cpp
-        Views/managesquadsmenu.h
-        Views/managesquadsmenu.ui
-
-        Views/manageteamsmenu.cpp
-        Views/manageteamsmenu.h
-        Views/manageteamsmenu.ui
-
-        Views/managesoldiersmenu.cpp
-        Views/managesoldiersmenu.h
-        Views/managesoldiersmenu.ui
-
-        Views/manageranksmenu.cpp
-        Views/manageranksmenu.h
-        Views/manageranksmenu.ui
-
-        Views/managerolesmenu.cpp
-        Views/managerolesmenu.h
-        Views/managerolesmenu.ui
-
-        Views/managedutiesmenu.cpp
-        Views/managedutiesmenu.h
-        Views/managedutiesmenu.ui
-
-        Views/createplatoonmenu.cpp
-        Views/createplatoonmenu.h
-        Views/createplatoonmenu.ui
-
+        Data/platoonmanager.h
+        Data/platoonmanager.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

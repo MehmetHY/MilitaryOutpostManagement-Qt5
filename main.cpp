@@ -7,11 +7,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    StaticManager::InitializeStaticManagers();
-    PlatoonManager platoonManager;
-    MainWindow w(&platoonManager);
+    MainWindow w();
     w.show();
-    int exitValue = a.exec();
-    StaticManager::EndStaticManagers();
-    return exitValue;
+    return a.exec();
+
 }

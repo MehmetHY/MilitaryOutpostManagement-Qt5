@@ -7,14 +7,11 @@
 class Platoon
 {
 private:
-    QString name;
     QList<class Squad*> squads;
     QList<class Duty*> duties;
 public:
-    Platoon(const QString &name);
+    Platoon();
 
-    const QString &getName() const;
-    void setName(const QString &newName);
     const QList<Squad *> &getSquads() const;
     const QList<Duty *> &getDuties() const;
 };

@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "Managers/platoonmanager.h"
+#include "Data/platoonmanager.h"
 #include "Views/createplatoonmenu.h"
 #include "Views/mainmenu.h"
 #include "Views/previewmenu.h"
@@ -15,20 +15,16 @@
 #include "Views/managerolesmenu.h"
 #include "Views/managedutiesmenu.h"
 
-MainWindow::MainWindow(class PlatoonManager* manager, QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), platoonManager(manager)
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-    InitializeMenus();
-    if (platoonManager->IsPlatoonExist())
-        ChangeMenu(Menu::MainMenu);
-    else
-        ChangeMenu(Menu::CreatePlatoonMenu);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    InitializeMenus();
+    ChangeMenu(Menu::MainMenu);
 }
 
 void MainWindow::ChangeMenu(Menu menu)
@@ -77,11 +73,6 @@ void MainWindow::ChangeMenu(Menu menu)
         break;
     }
     ui->stackedWidget->setCurrentIndex(id);
-}
-
-PlatoonManager *MainWindow::GetPlatoonManager() const
-{
-    return platoonManager;
 }
 
 void MainWindow::InitializeMenus()

@@ -1,6 +1,6 @@
 #include "platoon.h"
 
-Platoon::Platoon(const QString &name) : name(name)
+Platoon::Platoon()
 {}
 
 const QList<Squad *> &Platoon::getSquads() const
@@ -11,14 +11,4 @@ const QList<Squad *> &Platoon::getSquads() const
 const QList<Duty *> &Platoon::getDuties() const
 {
     return duties;
-}
-
-const QString &Platoon::getName() const
-{
-    return name;
-}
-
-void Platoon::setName(const QString &newName)
-{
-    name = newName;
 }

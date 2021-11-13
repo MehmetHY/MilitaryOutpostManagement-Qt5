@@ -2,6 +2,10 @@
 #define DATAMANAGER_H
 
 #include <QString>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QDebug>
+#include <QSqlError>
 
 class DataManager
 {
@@ -17,12 +21,8 @@ private:    // functions
     static void CreatePlatoonTable();
     static void CreateSquadTable();
     static void CreateTeamTable();
-    static void CreateRankTable();
-    static void CreateRoleTable();
     static void CreateSoldierTable();
     static void CreateDutyTable();
-    static void InsertRanks();
-    static void InsertRoles();
 
 public:     // methods
     static void Initialize();
