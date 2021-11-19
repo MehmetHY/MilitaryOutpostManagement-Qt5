@@ -2,6 +2,7 @@
 #define SOLDIER_H
 
 #include <QString>
+#include <Qlist>
 
 class Soldier
 {
@@ -9,6 +10,7 @@ private:
     QString name;
     QString rank;
     QString role;
+
 public:
     Soldier(const QString &name, const QString &rank, const QString &role);
 
@@ -18,6 +20,8 @@ public:
     void setRank(const QString &newRank);
     const QString &getRole() const;
     void setRole(const QString &newRole);
+
+    static void populateTeam(QList<Soldier*> outList, unsigned int id);
 };
 
 #endif // SOLDIER_H

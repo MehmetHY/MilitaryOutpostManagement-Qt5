@@ -38,9 +38,6 @@ set(PROJECT_SOURCES
 
         Data/datamanager.h
         Data/datamanager.cpp
-
-        Data/platoonmanager.h
-        Data/platoonmanager.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

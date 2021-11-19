@@ -16,11 +16,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <layout class="QGridLayout" name="rootLayout">
-      <item row="0" column="0">
-       <widget class="QStackedWidget" name="stackedWidget"/>
-      </item>
-     </layout>
+     <layout class="QGridLayout" name="root"/>
     </item>
    </layout>
   </widget>

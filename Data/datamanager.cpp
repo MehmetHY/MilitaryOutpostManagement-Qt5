@@ -64,24 +64,10 @@ bool DataManager::ExecuteQuery(QSqlQuery& outQuery, const QString queryString)
 
 void DataManager::CreateTables()
 {
-    CreatePlatoonTable();
     CreateSquadTable();
     CreateTeamTable();
     CreateSoldierTable();
     CreateDutyTable();
-}
-
-void DataManager::CreatePlatoonTable()
-{
-    QString queryString = R"(
-CREATE TABLE IF NOT EXISTS platoon
-(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name STRING(50) UNIQUE NOT NULL
-);
-)";
-    QSqlQuery query;
-    ExecuteQuery(query, queryString);
 }
 
 void DataManager::CreateSquadTable()

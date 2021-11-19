@@ -6,6 +6,7 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <QSqlError>
+#include <QSqlRecord>
 
 class DataManager
 {
@@ -18,7 +19,6 @@ public:     // constructors
 private:    // functions
     static bool ConnectSQLITE();
     static void CreateTables();
-    static void CreatePlatoonTable();
     static void CreateSquadTable();
     static void CreateTeamTable();
     static void CreateSoldierTable();
