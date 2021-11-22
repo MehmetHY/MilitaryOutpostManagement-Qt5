@@ -38,6 +38,10 @@ set(PROJECT_SOURCES
 
         Data/datamanager.h
         Data/datamanager.cpp
+
+        Views/dutyview.h
+        Views/dutyview.cpp
+        Views/dutyview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
