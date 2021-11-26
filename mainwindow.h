@@ -15,7 +15,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void ChangeRootWidget(QWidget* widget);
+
 private:
     Ui::MainWindow *ui;
+    QWidget* activeMenuWidget;
 };
 #endif // MAINWINDOW_H

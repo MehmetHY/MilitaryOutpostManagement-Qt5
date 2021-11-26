@@ -17,6 +17,13 @@ public:
 
 private:
     Ui::DashBoard *ui;
+
+private slots:
+    void handleViewDutiesButtonPressed();
+    void handleManageDutiesButtonPressed();
+    void handleManageSoldiersButtonPressed();
+    void handleManageTeamsButtonPressed();
+    void handleManageSquadsButtonPressed();
 };
 
 #endif // DASHBOARD_H
