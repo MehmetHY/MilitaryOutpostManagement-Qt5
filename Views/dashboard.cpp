@@ -1,10 +1,9 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
 #include "../mainwindow.h"
+#include "dutyview.h"
 
-DashBoard::DashBoard(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::DashBoard)
+DashBoard::DashBoard(MainWindow *parent) : QWidget(parent), ui(new Ui::DashBoard), mainWindow(parent)
 {
     ui->setupUi(this);
     connect(ui->viewDutiesButton, &QPushButton::pressed, this, &DashBoard::handleViewDutiesButtonPressed);
@@ -21,7 +20,7 @@ DashBoard::~DashBoard()
 
 void DashBoard::handleViewDutiesButtonPressed()
 {
-
+    mainWindow->changeRootWidget(new DutyView(mainWindow));
 }
 
 void DashBoard::handleManageDutiesButtonPressed()

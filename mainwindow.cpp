@@ -5,7 +5,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), activeMenuWidget(nullptr)
 {
-    ChangeRootWidget(new DashBoard(this));
+    changeRootWidget(new DashBoard(this));
 }
 
 MainWindow::~MainWindow()
@@ -13,12 +13,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::ChangeRootWidget(QWidget *widget)
+void MainWindow::changeRootWidget(QWidget *widget)
 {
-    if (activeMenuWidget)
-    {
-        delete activeMenuWidget;
-    }
+    if (activeMenuWidget) activeMenuWidget->deleteLater();
     activeMenuWidget = widget;
     setCentralWidget(widget);
 }

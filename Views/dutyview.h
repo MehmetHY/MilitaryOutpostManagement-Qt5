@@ -12,11 +12,12 @@ class DutyView : public QWidget
     Q_OBJECT
 
 public:
-    explicit DutyView(QWidget *parent = nullptr);
+    explicit DutyView(class MainWindow *parent = nullptr);
     ~DutyView();
 
 private:
     Ui::DutyView *ui;
+    MainWindow* mainWindow;
 };
 
 #endif // DUTYVIEW_H

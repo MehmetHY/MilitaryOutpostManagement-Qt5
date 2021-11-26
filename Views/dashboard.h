@@ -12,11 +12,12 @@ class DashBoard : public QWidget
     Q_OBJECT
 
 public:
-    explicit DashBoard(QWidget *parent = nullptr);
+    explicit DashBoard(class MainWindow *parent = nullptr);
     ~DashBoard();
 
 private:
     Ui::DashBoard *ui;
+    MainWindow* mainWindow;
 
 private slots:
     void handleViewDutiesButtonPressed();

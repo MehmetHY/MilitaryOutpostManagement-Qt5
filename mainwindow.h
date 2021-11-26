@@ -15,7 +15,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void ChangeRootWidget(QWidget* widget);
+    void changeRootWidget(QWidget* widget);
 
 private:
     Ui::MainWindow *ui;
