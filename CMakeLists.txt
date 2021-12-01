@@ -50,6 +50,10 @@ set(PROJECT_SOURCES
         Views/managesquadsview.h
         Views/managesquadsview.cpp
         Views/managesquadsview.ui
+
+        Views/createsquadview.h
+        Views/createsquadview.cpp
+        Views/createsquadview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

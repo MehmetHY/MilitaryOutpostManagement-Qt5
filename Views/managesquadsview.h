@@ -16,7 +16,10 @@ public:
     ~ManageSquadsView();
 
 private:
+    MainWindow* mainWindow;
     Ui::ManageSquadsView *ui;
+
+    void handleCreateButtonPressed() const;
 };
 
 #endif // MANAGESQUADSVIEW_H
