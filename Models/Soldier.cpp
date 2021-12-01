@@ -55,3 +55,23 @@ void Soldier::populateTeam(QList<Soldier *> outList, unsigned int id)
         } while (query.next());
     }
 }
+
+Soldier* Soldier::getSoldierById(int id)
+{
+    QString queryString = "SELECT * FROM soldier WHERE id = " + QString::number(id) + ";";
+    QSqlQuery query;
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int nameId = query.record().indexOf("name");
+        int rankId = query.record().indexOf("rank");
+        int roleId = query.record().indexOf("role");
+        QString name = query.value(nameId).toString();
+        QString rank = query.value(rankId).toString();
+        QString role = query.value(roleId).toString();
+        Soldier* soldier = new Soldier(name, rank, role);
+        return soldier;
+    }
+    qDebug() << "Couldn't find soldier with id: " + QString::number(id);
+    return nullptr;
+}

@@ -23,6 +23,8 @@ public:
     void setStartDate(const QDateTime &newStartDate);
     const QDateTime &getEndDate() const;
     void setEndDate(const QDateTime &newEndDate);
+
+    static void getAllDuties(QList<Duty*>& outList);
 };
 
 #endif // DUTY_H

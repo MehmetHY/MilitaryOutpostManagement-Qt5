@@ -22,6 +22,7 @@ public:
     void setRole(const QString &newRole);
 
     static void populateTeam(QList<Soldier*> outList, unsigned int id);
+    static Soldier* getSoldierById(int id);
 };
 
 #endif // SOLDIER_H

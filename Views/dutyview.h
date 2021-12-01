@@ -18,6 +18,8 @@ public:
 private:
     Ui::DutyView *ui;
     MainWindow* mainWindow;
+
+    void setupDutyTable();
 };
 
 #endif // DUTYVIEW_H
