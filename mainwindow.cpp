@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "Views/dashboard.h"
+#include "Data/datamanager.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), activeMenuWidget(nullptr)
@@ -10,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    DataManager::CloseConnection();
     delete ui;
 }
 

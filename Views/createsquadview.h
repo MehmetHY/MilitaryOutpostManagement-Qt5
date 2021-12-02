@@ -18,6 +18,9 @@ public:
 private:
     MainWindow* mainWindow;
     Ui::CreateSquadView *ui;
+
+    void handleCreateButtonPressed() const;
+    void handleCancelButtonPressed() const;
 };
 
 #endif // CREATESQUADVIEW_H

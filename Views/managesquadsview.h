@@ -20,6 +20,9 @@ private:
     Ui::ManageSquadsView *ui;
 
     void handleCreateButtonPressed() const;
+    void handleUpdateButtonPressed() const;
+    void handleDeleteButtonPressed() const;
+    void handleBackButtonPressed() const;
 };
 
 #endif // MANAGESQUADSVIEW_H

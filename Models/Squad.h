@@ -16,6 +16,9 @@ public:
     const QString &getName() const;
     void setName(const QString &newName);
     const QList<Team *> &getTeams() const;
+
+    static void createSquad(const QString& name);
+    static bool isSquadExist(const QString& name);
 };
 
 #endif // SQUAD_H
