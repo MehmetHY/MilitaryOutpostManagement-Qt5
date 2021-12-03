@@ -1,6 +1,7 @@
 #include "manageteamsview.h"
 #include "ui_manageteamsview.h"
 #include "../mainwindow.h"
+#include "dashboard.h"
 
 ManageTeamsView::ManageTeamsView(MainWindow *parent)
     :   QWidget(parent),  mainWindow(parent), ui(new Ui::ManageTeamsView)
@@ -34,5 +35,5 @@ void ManageTeamsView::handleDeleteButtonPressed() const
 
 void ManageTeamsView::handleBackButtonPressed() const
 {
-
+    mainWindow->changeRootWidget(new DashBoard(mainWindow));
 }

@@ -66,6 +66,10 @@ set(PROJECT_SOURCES
         Views/manageteamsview.h
         Views/manageteamsview.cpp
         Views/manageteamsview.ui
+
+        Views/createteamview.h
+        Views/createteamview.cpp
+        Views/createteamview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
