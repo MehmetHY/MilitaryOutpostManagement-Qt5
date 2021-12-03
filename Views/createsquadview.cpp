@@ -33,7 +33,7 @@ void CreateSquadView::handleCreateButtonPressed() const
     }
     Squad::createSquad(text);
     QMessageBox::information(mainWindow, "Success", "Squad created!");
-    handleCancelButtonPressed();
+    ui->lineEdit->clear();
 }
 
 void CreateSquadView::handleCancelButtonPressed() const

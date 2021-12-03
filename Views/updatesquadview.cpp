@@ -9,6 +9,8 @@ UpdateSquadView::UpdateSquadView(MainWindow *parent)
     :   QWidget(parent), mainWindow(parent), ui(new Ui::UpdateSquadView)
 {
     ui->setupUi(this);
+    connect(ui->updateButton, &QPushButton::pressed, this, &UpdateSquadView::handleUpdateButtonPressed);
+    connect(ui->backButton, &QPushButton::pressed, this, &UpdateSquadView::handleBackButtonPressed);
     initializeComboBox();
 }
 
@@ -37,7 +39,16 @@ void UpdateSquadView::handleUpdateButtonPressed()
         QMessageBox::warning(mainWindow, "Invalid Input", "Squad name cannot be empty!");
         return;
     }
-
+    if (Squad::isSquadExist(newName))
+    {
+        QMessageBox::warning(mainWindow, "Invalid Name", "Squad " + newName + " already exist!");
+        return;
+    }
+    QString oldName = ui->comboBox->currentText();
+    Squad::updateSquad(newName, oldName);
+    ui->comboBox->clear();
+    ui->lineEdit->clear();
+    initializeComboBox();
 }
 
 void UpdateSquadView::handleBackButtonPressed() const
