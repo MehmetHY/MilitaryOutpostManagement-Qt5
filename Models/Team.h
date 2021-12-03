@@ -18,6 +18,8 @@ public:
     void setName(const QString &newName);
     const QList<Soldier *> &getSoldiers() const;
 
+    static bool isTeamExist(const QString& name, const int squadId);
+    static void createTeam(const QString& name, const int squadId);
 };
 
 #endif // TEAM_H

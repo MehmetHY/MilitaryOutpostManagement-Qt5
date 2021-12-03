@@ -40,3 +40,22 @@ const QList<Soldier *> &Team::getSoldiers() const
 {
     return soldiers;
 }
+
+bool Team::isTeamExist(const QString &name, const int squadId)
+{
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM team WHERE name = :name AND squad_id = :squadId;");
+    query.bindValue(":name", name);
+    query.bindValue(":squadId", squadId);
+    query.exec();
+    return query.next() && query.value(0).toInt() > 0;
+}
+
+void Team::createTeam(const QString &name, const int squadId)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO team (name, squad_id) VALUES (:name, :squadId)");
+    query.bindValue(":name", name);
+    query.bindValue(":squadId", squadId);
+    query.exec();
+}

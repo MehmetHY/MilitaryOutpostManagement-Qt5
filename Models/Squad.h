@@ -22,6 +22,7 @@ public:
     static void getAllSquadNames(QStringList& outList);
     static void deleteSquad(const QString& name);
     static void updateSquad(const QString& newName, const QString &oldName);
+    static int getIdByName(const QString& name);
 };
 
 #endif // SQUAD_H

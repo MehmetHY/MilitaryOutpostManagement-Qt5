@@ -33,9 +33,7 @@ bool Squad::isSquadExist(const QString &name)
     query.prepare("SELECT COUNT(*) FROM squad WHERE name = (:name)");
     query.bindValue(":name", name);
     query.exec();
-    if (query.next() && query.value(0).toInt() > 0)
-        return true;
-    return false;
+    return query.next() && query.value(0).toInt() > 0;
 }
 
 void Squad::getAllSquadNames(QStringList &outList)
@@ -68,6 +66,18 @@ void Squad::updateSquad(const QString &newName, const QString &oldName)
     query.bindValue(":newName", newName);
     query.bindValue(":oldName", oldName);
     query.exec();
+}
+
+int Squad::getIdByName(const QString &name)
+{
+    const QString queryString = "SELECT * FROM squad WHERE name = '" + name + "';";
+    QSqlQuery query;
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        return query.value(0).toInt();
+    }
+    return 0;
 }
 
 

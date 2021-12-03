@@ -89,7 +89,7 @@ void DataManager::CreateTeamTable()
 CREATE TABLE IF NOT EXISTS team
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name STRING(50) NOT NULL UNIQUE,
+    name STRING(50) NOT NULL,
     squad_id INTEGER REFERENCES squad(id) NOT NULL
 );
 )";
@@ -103,7 +103,7 @@ void DataManager::CreateSoldierTable()
 CREATE TABLE IF NOT EXISTS soldier
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name STRING(50) UNIQUE NOT NULL,
+    name STRING(50) NOT NULL,
     rank_id INTEGER REFERENCES rank(id) NOT NULL,
     role_id INTEGER REFERENCES role(id) NOT NULL,
     team_id INTEGER REFERENCES team(id) DEFAULT NULL

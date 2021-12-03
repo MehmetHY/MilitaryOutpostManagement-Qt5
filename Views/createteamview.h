@@ -12,11 +12,16 @@ class CreateTeamView : public QWidget
     Q_OBJECT
 
 public:
-    explicit CreateTeamView(QWidget *parent = nullptr);
+    explicit CreateTeamView(class MainWindow *parent = nullptr);
     ~CreateTeamView();
 
 private:
+    MainWindow* mainWindow;
     Ui::CreateTeamView *ui;
+
+    void handleCreateButtonPressed() const;
+    void handleBackButtonPressed() const;
+    void initializeComboBox();
 };
 
 #endif // CREATETEAMVIEW_H
