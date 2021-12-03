@@ -61,4 +61,10 @@ void Squad::deleteSquad(const QString &name)
     DataManager::ExecuteQuery(query, queryString);
 }
 
+void Squad::updateSquad(const QString &newName)
+{
+    QSqlQuery query;
+    query.prepare("");
+}
+
 

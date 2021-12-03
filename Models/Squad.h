@@ -21,6 +21,7 @@ public:
     static bool isSquadExist(const QString& name);
     static void getAllSquadNames(QStringList& outList);
     static void deleteSquad(const QString& name);
+    static void updateSquad(const QString& newName);
 };
 
 #endif // SQUAD_H
