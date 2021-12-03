@@ -38,4 +38,20 @@ bool Squad::isSquadExist(const QString &name)
     return false;
 }
 
+void Squad::getAllSquadNames(QStringList &outList)
+{
+    const QString queryString = "SELECT * FROM squad;";
+    QSqlQuery query;
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int nameId = query.record().indexOf("name");
+        do
+        {
+            QString name = query.value(nameId).toString();
+            outList << name;
+        } while (query.next());
+    }
+}
+
 

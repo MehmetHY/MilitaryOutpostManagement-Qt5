@@ -3,6 +3,7 @@
 #include "../mainwindow.h"
 #include "createsquadview.h"
 #include "dashboard.h"
+#include "deletesquadview.h"
 
 ManageSquadsView::ManageSquadsView(MainWindow *parent)
     : QWidget(parent),  mainWindow(parent), ui(new Ui::ManageSquadsView)
@@ -31,7 +32,7 @@ void ManageSquadsView::handleUpdateButtonPressed() const
 
 void ManageSquadsView::handleDeleteButtonPressed() const
 {
-
+    mainWindow->changeRootWidget(new DeleteSquadView(mainWindow));
 }
 
 void ManageSquadsView::handleBackButtonPressed() const
