@@ -20,6 +20,7 @@ public:
     static void createSquad(const QString& name);
     static bool isSquadExist(const QString& name);
     static void getAllSquadNames(QStringList& outList);
+    static void deleteSquad(const QString& name);
 };
 
 #endif // SQUAD_H

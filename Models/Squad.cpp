@@ -54,4 +54,11 @@ void Squad::getAllSquadNames(QStringList &outList)
     }
 }
 
+void Squad::deleteSquad(const QString &name)
+{
+    const QString queryString = "DELETE FROM squad WHERE name = '" + name + "';";
+    QSqlQuery query;
+    DataManager::ExecuteQuery(query, queryString);
+}
+
 

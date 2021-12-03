@@ -20,6 +20,7 @@ private:
     Ui::DeleteSquadView *ui;
     void initializeComboBox();
     void handleBackButtonPressed() const;
+    void handleDeleteButtonPressed();
 };
 
 #endif // DELETESQUADVIEW_H
