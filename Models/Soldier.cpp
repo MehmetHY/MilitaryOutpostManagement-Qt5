@@ -86,3 +86,25 @@ void Soldier::createSoldier(const QString &name, const QString &rank, const QStr
     query.bindValue(":teamId", teamId);
     query.exec();
 }
+
+void Soldier::getAllSoldierNames(const int teamId, QStringList &outList)
+{
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM soldier WHERE team_id = " + QString::number(teamId) + ";";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int nameId = query.record().indexOf("name");
+        do
+        {
+            outList << query.value(nameId).toString();
+        } while (query.next());
+    }
+}
+
+void Soldier::deleteSoldier(const QString &name, const int teamId)
+{
+    QSqlQuery query;
+    const QString queryString = "DELETE FROM soldier WHERE team_id = " + QString::number(teamId) + " AND name = '" + name + "';";
+    DataManager::ExecuteQuery(query, queryString);
+}
