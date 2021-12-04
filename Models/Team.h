@@ -20,6 +20,8 @@ public:
 
     static bool isTeamExist(const QString& name, const int squadId);
     static void createTeam(const QString& name, const int squadId);
+    static void getAllTeamNames(const int squadId, QStringList& outList);
+    static void deleteTeam(const int squadId, const QString& name);
 };
 
 #endif // TEAM_H

@@ -59,3 +59,25 @@ void Team::createTeam(const QString &name, const int squadId)
     query.bindValue(":squadId", squadId);
     query.exec();
 }
+
+void Team::getAllTeamNames(const int squadId, QStringList& outList)
+{
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM team WHERE squad_id = " + QString::number(squadId) + ";";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int nameId = query.record().indexOf("name");
+        do
+        {
+            outList << query.value(nameId).toString();
+        } while (query.next());
+    }
+}
+
+void Team::deleteTeam(const int squadId, const QString &name)
+{
+    const QString queryString = "DELETE FROM team WHERE squad_id = " + QString::number(squadId) + " AND name = '" + name + "';";
+    QSqlQuery query;
+    DataManager::ExecuteQuery(query, queryString);
+}
