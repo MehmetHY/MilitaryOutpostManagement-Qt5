@@ -4,6 +4,7 @@
 #include "createsoldierview.h"
 #include "dashboard.h"
 #include "deletesoldierview.h"
+#include "updatesoldierview.h"
 
 ManageSoldiersView::ManageSoldiersView(MainWindow *parent)
     :   QWidget(parent),  mainWindow(parent), ui(new Ui::ManageSoldiersView)
@@ -27,7 +28,7 @@ void ManageSoldiersView::handleCreateButtonPressed() const
 
 void ManageSoldiersView::handleUpdateButtonPressed() const
 {
-
+    mainWindow->changeRootWidget(new UpdateSoldierView(mainWindow));
 }
 
 void ManageSoldiersView::handleDeleteButtonPressed() const

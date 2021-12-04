@@ -90,6 +90,10 @@ set(PROJECT_SOURCES
         Views/deletesoldierview.h
         Views/deletesoldierview.cpp
         Views/deletesoldierview.ui
+
+        Views/updatesoldierview.h
+        Views/updatesoldierview.cpp
+        Views/updatesoldierview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
