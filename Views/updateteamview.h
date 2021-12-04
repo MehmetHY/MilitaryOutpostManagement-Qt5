@@ -18,9 +18,12 @@ public:
 private:
     MainWindow* mainWindow;
     Ui::UpdateTeamView *ui;
-    void initializeComboBoxes();
+    void initializeElements();
     void handleUpdateButtonPressed();
     void handleBackButtonPressed() const;
+    void loadSquadComboBox();
+    void loadTeamComboBox();
+    void loadLineEditText();
 };
 
 #endif // UPDATETEAMVIEW_H

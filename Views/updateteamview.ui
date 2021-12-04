@@ -14,8 +14,12 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QComboBox" name="squadComboBox"/>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="updateButton">
+     <property name="text">
+      <string>Update</string>
+     </property>
+    </widget>
    </item>
    <item row="1" column="0">
     <widget class="QComboBox" name="teamComboBox"/>
@@ -23,22 +27,15 @@
    <item row="2" column="0">
     <widget class="QLineEdit" name="lineEdit"/>
    </item>
-   <item row="3" column="0">
-    <widget class="QComboBox" name="newSquadComboBox"/>
-   </item>
    <item row="4" column="0">
-    <widget class="QPushButton" name="updateButton">
-     <property name="text">
-      <string>Update</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
     <widget class="QPushButton" name="backButton">
      <property name="text">
       <string>Back</string>
      </property>
     </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QComboBox" name="squadComboBox"/>
    </item>
   </layout>
  </widget>

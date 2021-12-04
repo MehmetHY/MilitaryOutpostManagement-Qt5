@@ -81,3 +81,13 @@ void Team::deleteTeam(const int squadId, const QString &name)
     QSqlQuery query;
     DataManager::ExecuteQuery(query, queryString);
 }
+
+void Team::updateTeam(const int squadId, const QString &oldName, const QString &newName)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE team SET name = :newName WHERE squad_id = :squadId AND name = :oldName;");
+    query.bindValue(":newName", newName);
+    query.bindValue(":squadId", squadId);
+    query.bindValue(":oldName", oldName);
+    query.exec();
+}
