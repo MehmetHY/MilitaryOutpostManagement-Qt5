@@ -2,6 +2,7 @@
 #include "ui_manageranksview.h"
 #include "../mainwindow.h"
 #include "dashboard.h"
+#include "createrankview.h"
 
 ManageRanksView::ManageRanksView(MainWindow *parent) :
     QWidget(parent),
@@ -22,7 +23,7 @@ ManageRanksView::~ManageRanksView()
 
 void ManageRanksView::handleCreateButtonPressed() const
 {
-
+    mainWindow->changeRootWidget(new CreateRankView(mainWindow));
 }
 
 void ManageRanksView::handleUpdateButtonPressed() const

@@ -101,6 +101,10 @@ set(PROJECT_SOURCES
         Views/manageranksview.h
         Views/manageranksview.cpp
         Views/manageranksview.ui
+
+        Views/createrankview.h
+        Views/createrankview.cpp
+        Views/createrankview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
