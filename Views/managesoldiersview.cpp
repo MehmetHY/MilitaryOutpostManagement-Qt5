@@ -1,8 +1,8 @@
 #include "managesoldiersview.h"
 #include "ui_managesoldiersview.h"
 #include "../mainwindow.h"
-#include "createsoldierview.h"
 #include "dashboard.h"
+#include "createsoldierview.h"
 #include "deletesoldierview.h"
 #include "updatesoldierview.h"
 

@@ -26,6 +26,7 @@ public:
     static void createSoldier(const QString& name, const QString& rank, const QString& role, const int teamId);
     static void getAllSoldierNames(const int teamId, QStringList& outList);
     static void deleteSoldier(const QString& name, const int teamId);
+    static int getSoldierId(const int teamId, const QString& name);
 };
 
 #endif // SOLDIER_H

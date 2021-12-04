@@ -4,6 +4,7 @@
 #include "dutyview.h"
 #include "managesquadsview.h"
 #include "manageteamsview.h"
+#include "manageranksview.h"
 #include "managesoldiersview.h"
 
 DashBoard::DashBoard(MainWindow *parent) : QWidget(parent), ui(new Ui::DashBoard), mainWindow(parent)
@@ -11,6 +12,7 @@ DashBoard::DashBoard(MainWindow *parent) : QWidget(parent), ui(new Ui::DashBoard
     ui->setupUi(this);
     connect(ui->viewDutiesButton, &QPushButton::pressed, this, &DashBoard::handleViewDutiesButtonPressed);
     connect(ui->manageDutiesButton, &QPushButton::pressed, this, &DashBoard::handleManageDutiesButtonPressed);
+    connect(ui->manageRanksButton, &QPushButton::pressed, this, &DashBoard::handleManageRanksButtonPressed);
     connect(ui->manageSoldiersButton, &QPushButton::pressed, this, &DashBoard::handleManageSoldiersButtonPressed);
     connect(ui->manageTeamsButton, &QPushButton::pressed, this, &DashBoard::handleManageTeamsButtonPressed);
     connect(ui->manageSquadsButton, &QPushButton::pressed, this, &DashBoard::handleManageSquadsButtonPressed);
@@ -29,6 +31,11 @@ void DashBoard::handleViewDutiesButtonPressed()
 void DashBoard::handleManageDutiesButtonPressed()
 {
 
+}
+
+void DashBoard::handleManageRanksButtonPressed()
+{
+    mainWindow->changeRootWidget(new ManageRanksView(mainWindow));
 }
 
 void DashBoard::handleManageSoldiersButtonPressed()

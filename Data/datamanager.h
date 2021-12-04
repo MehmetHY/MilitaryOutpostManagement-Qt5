@@ -21,6 +21,7 @@ private:    // functions
     static void CreateTables();
     static void CreateSquadTable();
     static void CreateTeamTable();
+    static void CreateRankTable();
     static void CreateSoldierTable();
     static void CreateDutyTable();
 

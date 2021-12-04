@@ -22,6 +22,7 @@ private:
 private slots:
     void handleViewDutiesButtonPressed();
     void handleManageDutiesButtonPressed();
+    void handleManageRanksButtonPressed();
     void handleManageSoldiersButtonPressed();
     void handleManageTeamsButtonPressed();
     void handleManageSquadsButtonPressed();

@@ -108,3 +108,16 @@ void Soldier::deleteSoldier(const QString &name, const int teamId)
     const QString queryString = "DELETE FROM soldier WHERE team_id = " + QString::number(teamId) + " AND name = '" + name + "';";
     DataManager::ExecuteQuery(query, queryString);
 }
+
+int Soldier::getSoldierId(const int teamId, const QString &name)
+{
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM soldier WHERE team_id = " + QString::number(teamId) + " AND name = '" + name + "';";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int idId = query.record().indexOf("id");
+        return query.value(idId).toInt();
+    }
+    return 0;
+}

@@ -33,6 +33,9 @@ set(PROJECT_SOURCES
         Models/soldier.h
         Models/soldier.cpp
 
+        Models/rank.h
+        Models/rank.cpp
+
         Models/duty.h
         Models/duty.cpp
 
@@ -94,6 +97,10 @@ set(PROJECT_SOURCES
         Views/updatesoldierview.h
         Views/updatesoldierview.cpp
         Views/updatesoldierview.ui
+
+        Views/manageranksview.h
+        Views/manageranksview.cpp
+        Views/manageranksview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

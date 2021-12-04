@@ -66,6 +66,7 @@ void DataManager::CreateTables()
 {
     CreateSquadTable();
     CreateTeamTable();
+    CreateRankTable();
     CreateSoldierTable();
     CreateDutyTable();
 }
@@ -91,6 +92,19 @@ CREATE TABLE IF NOT EXISTS team
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name STRING(50) NOT NULL,
     squad_id INTEGER REFERENCES squad(id) NOT NULL
+);
+)";
+    QSqlQuery query;
+    ExecuteQuery(query, queryString);
+}
+
+void DataManager::CreateRankTable()
+{
+    QString queryString = R"(
+CREATE TABLE IF NOT EXISTS rank
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name STRING(50) NOT NULL UNIQUE
 );
 )";
     QSqlQuery query;
