@@ -74,6 +74,10 @@ set(PROJECT_SOURCES
         Views/deleteteamview.h
         Views/deleteteamview.cpp
         Views/deleteteamview.ui
+
+        Views/updateteamview.h
+        Views/updateteamview.cpp
+        Views/updateteamview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
