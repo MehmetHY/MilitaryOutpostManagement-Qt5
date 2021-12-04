@@ -78,6 +78,10 @@ set(PROJECT_SOURCES
         Views/updateteamview.h
         Views/updateteamview.cpp
         Views/updateteamview.ui
+
+        Views/managesoldiersview.h
+        Views/managesoldiersview.cpp
+        Views/managesoldiersview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
