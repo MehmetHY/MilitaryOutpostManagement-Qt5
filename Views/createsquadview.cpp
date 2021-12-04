@@ -9,7 +9,7 @@ CreateSquadView::CreateSquadView(MainWindow *parent)
     :   QWidget(parent),  mainWindow(parent), ui(new Ui::CreateSquadView)
 {
     ui->setupUi(this);
-    connect(ui->cancelButton, &QPushButton::pressed, this, &CreateSquadView::handleCancelButtonPressed);
+    connect(ui->backButton, &QPushButton::pressed, this, &CreateSquadView::handleBackButtonPressed);
     connect(ui->createButton, &QPushButton::pressed, this, &CreateSquadView::handleCreateButtonPressed);
 }
 
@@ -36,7 +36,7 @@ void CreateSquadView::handleCreateButtonPressed() const
     ui->lineEdit->clear();
 }
 
-void CreateSquadView::handleCancelButtonPressed() const
+void CreateSquadView::handleBackButtonPressed() const
 {
     mainWindow->changeRootWidget(new ManageSquadsView(mainWindow));
 }

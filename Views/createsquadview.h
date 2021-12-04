@@ -20,7 +20,7 @@ private:
     Ui::CreateSquadView *ui;
 
     void handleCreateButtonPressed() const;
-    void handleCancelButtonPressed() const;
+    void handleBackButtonPressed() const;
 };
 
 #endif // CREATESQUADVIEW_H

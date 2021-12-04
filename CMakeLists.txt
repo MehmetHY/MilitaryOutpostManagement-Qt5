@@ -82,6 +82,10 @@ set(PROJECT_SOURCES
         Views/managesoldiersview.h
         Views/managesoldiersview.cpp
         Views/managesoldiersview.ui
+
+        Views/createsoldierview.h
+        Views/createsoldierview.cpp
+        Views/createsoldierview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
