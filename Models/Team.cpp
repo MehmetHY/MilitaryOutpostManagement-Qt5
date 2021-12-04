@@ -91,3 +91,16 @@ void Team::updateTeam(const int squadId, const QString &oldName, const QString &
     query.bindValue(":oldName", oldName);
     query.exec();
 }
+
+int Team::getTeamId(const int squadId, const QString &name)
+{
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM team WHERE squad_id = " + QString::number(squadId) + " AND name = '" + name + "'";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int idId = query.record().indexOf("id");
+        return query.value(idId).toInt();
+    }
+    return 0;
+}

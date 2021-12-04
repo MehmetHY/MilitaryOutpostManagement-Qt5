@@ -21,6 +21,9 @@ private:
 
     void handleCreateButtonPressed() const;
     void handleBackButtonPressed() const;
+    void initializeElements();
+    void loadSquadComboBox();
+    void loadTeamComboBox();
 };
 
 #endif // CREATESOLDIERVIEW_H

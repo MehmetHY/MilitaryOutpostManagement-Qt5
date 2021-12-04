@@ -75,3 +75,14 @@ Soldier* Soldier::getSoldierById(int id)
     qDebug() << "Couldn't find soldier with id: " + QString::number(id);
     return nullptr;
 }
+
+void Soldier::createSoldier(const QString &name, const QString &rank, const QString &role, const int teamId)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO soldier (name, rank, role, team_id) VALUES (:name, :rank, :role, :teamId)");
+    query.bindValue(":name", name);
+    query.bindValue(":rank", rank);
+    query.bindValue(":role", role);
+    query.bindValue(":teamId", teamId);
+    query.exec();
+}

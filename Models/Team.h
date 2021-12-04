@@ -23,6 +23,7 @@ public:
     static void getAllTeamNames(const int squadId, QStringList& outList);
     static void deleteTeam(const int squadId, const QString& name);
     static void updateTeam(const int squadId, const QString& oldName, const QString& newName);
+    static int getTeamId(const int squadId, const QString& name);
 };
 
 #endif // TEAM_H

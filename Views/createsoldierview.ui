@@ -15,19 +15,19 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QLineEdit" name="lineEdit"/>
+    <widget class="QLineEdit" name="nameLineEdit"/>
    </item>
    <item row="1" column="0">
-    <widget class="QLineEdit" name="lineEdit_2"/>
+    <widget class="QLineEdit" name="rankLineEdit"/>
    </item>
    <item row="2" column="0">
-    <widget class="QLineEdit" name="lineEdit_3"/>
+    <widget class="QLineEdit" name="roleLineEdit"/>
    </item>
    <item row="3" column="0">
-    <widget class="QComboBox" name="comboBox"/>
+    <widget class="QComboBox" name="squadComboBox"/>
    </item>
    <item row="4" column="0">
-    <widget class="QComboBox" name="comboBox_2"/>
+    <widget class="QComboBox" name="teamComboBox"/>
    </item>
    <item row="5" column="0">
     <widget class="QPushButton" name="createButton">

@@ -23,6 +23,7 @@ public:
 
     static void populateTeam(QList<Soldier*> outList, unsigned int id);
     static Soldier* getSoldierById(int id);
+    static void createSoldier(const QString& name, const QString& rank, const QString& role, const int teamId);
 };
 
 #endif // SOLDIER_H
