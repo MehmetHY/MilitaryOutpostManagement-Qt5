@@ -3,6 +3,7 @@
 #include "../mainwindow.h"
 #include "dashboard.h"
 #include "createrankview.h"
+#include "deleterankview.h"
 
 ManageRanksView::ManageRanksView(MainWindow *parent) :
     QWidget(parent),
@@ -33,7 +34,7 @@ void ManageRanksView::handleUpdateButtonPressed() const
 
 void ManageRanksView::handleDeleteButtonPressed() const
 {
-
+    mainWindow->changeRootWidget(new DeleteRankView(mainWindow));
 }
 
 void ManageRanksView::handleBackButtonPressed() const

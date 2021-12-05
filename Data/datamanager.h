@@ -24,6 +24,7 @@ private:    // functions
     static void CreateRankTable();
     static void CreateSoldierTable();
     static void CreateDutyTable();
+    static void InsertRanks();
 
 public:     // methods
     static void Initialize();

@@ -69,6 +69,7 @@ void DataManager::CreateTables()
     CreateRankTable();
     CreateSoldierTable();
     CreateDutyTable();
+    InsertRanks();
 }
 
 void DataManager::CreateSquadTable()
@@ -141,4 +142,28 @@ CREATE TABLE IF NOT EXISTS duty
 )";
     QSqlQuery query;
     ExecuteQuery(query, queryString);
+}
+
+void DataManager::InsertRanks()
+{
+    QString queryString = R"(
+INSERT INTO rank
+    (name)
+VALUES
+    ('Private'),
+    ('Private First Class'),
+    ('Corporal'),
+    ('Sergeant'),
+    ('Staff Sergeant'),
+    ('Sergeant First Class'),
+    ('Master Sergeant'),
+    ('First Sergeant'),
+    ('Sergeant Major'),
+    ('Second Lieutenant'),
+    ('First Lieutenant'),
+    ('Captain');
+)";
+    QSqlQuery query;
+    ExecuteQuery(query, queryString);
+
 }

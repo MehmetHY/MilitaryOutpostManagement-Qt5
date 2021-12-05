@@ -105,6 +105,10 @@ set(PROJECT_SOURCES
         Views/createrankview.h
         Views/createrankview.cpp
         Views/createrankview.ui
+
+        Views/deleterankview.h
+        Views/deleterankview.cpp
+        Views/deleterankview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
