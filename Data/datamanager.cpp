@@ -69,7 +69,7 @@ void DataManager::CreateTables()
     CreateRankTable();
     CreateSoldierTable();
     CreateDutyTable();
-    InsertRanks();
+//    InsertRanks();
 }
 
 void DataManager::CreateSquadTable()

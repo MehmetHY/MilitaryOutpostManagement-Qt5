@@ -10,6 +10,8 @@ public:
 
     static bool isRankExist(const QString& name);
     static void createRank(const QString& name);
+    static void deleteRank(const QString& name);
+    static void getAllRankNames(QStringList& outList);
 };
 
 #endif // RANK_H

@@ -22,3 +22,25 @@ void Rank::createRank(const QString &name)
     query.bindValue(":name", name);
     query.exec();
 }
+
+void Rank::deleteRank(const QString &name)
+{
+    QSqlQuery query;
+    const QString queryString = "DELETE FROM rank WHERE name = '" + name + "';";
+    DataManager::ExecuteQuery(query, queryString);
+}
+
+void Rank::getAllRankNames(QStringList &outList)
+{
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM rank;";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int nameId = query.record().indexOf("name");
+        do
+        {
+            outList << query.value(nameId).toString();
+        } while (query.next());
+    }
+}

@@ -20,7 +20,7 @@ private:
     Ui::DeleteRankView *ui;
     void handleBackButtonPressed() const;
     void handleDeleteButtonPressed();
-    void initializeComboBox();
+    void loadComboBox();
 };
 
 #endif // DELETERANKVIEW_H
