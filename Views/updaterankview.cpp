@@ -31,7 +31,26 @@ void UpdateRankView::loadComboBox()
 
 void UpdateRankView::handleUpdateButtonPressed()
 {
-
+    if (ui->comboBox->count() < 1)
+    {
+        QMessageBox::warning(mainWindow, "Empty List", "There is no rank!");
+        return;
+    }
+    QString newName = ui->lineEdit->text().trimmed();
+    if (newName.isEmpty())
+    {
+        QMessageBox::warning(mainWindow, "Invalid Input", "Name cannot be empty!");
+        return;
+    }
+    if (Rank::isRankExist(newName))
+    {
+        QMessageBox::warning(mainWindow, "Invalid Input", "Rank " + newName + " already exist!");
+        return;
+    }
+    QString oldName = ui->comboBox->currentText();
+    Rank::updateRank(oldName, newName);
+    ui->lineEdit->clear();
+    loadComboBox();
 }
 
 void UpdateRankView::handleBackButtonPressed() const

@@ -44,3 +44,12 @@ void Rank::getAllRankNames(QStringList &outList)
         } while (query.next());
     }
 }
+
+void Rank::updateRank(const QString &oldName, const QString &newName)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE rank SET name = :newName WHERE name = :oldName;");
+    query.bindValue(":oldName", oldName);
+    query.bindValue(":newName", newName);
+    query.exec();
+}
