@@ -24,6 +24,7 @@ private:
     void initializeElements();
     void loadSquadComboBox();
     void loadTeamComboBox();
+    void loadRankComboBox();
 };
 
 #endif // CREATESOLDIERVIEW_H

@@ -53,3 +53,29 @@ void Rank::updateRank(const QString &oldName, const QString &newName)
     query.bindValue(":newName", newName);
     query.exec();
 }
+
+int Rank::getRankId(const QString &name)
+{
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM rank WHERE name = '" + name + "';";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int idId = query.record().indexOf("id");
+        return query.value(idId).toInt();
+    }
+    return 0;
+}
+
+const QString Rank::getRankName(const int id)
+{
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM rank WHERE id = " + QString::number(id) + ";";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int nameId = query.record().indexOf("name");
+        return query.value(nameId).toString();
+    }
+    return "";
+}

@@ -7,26 +7,32 @@
 class Soldier
 {
 private:
+    int id;
     QString name;
-    QString rank;
+    int rankId;
     QString role;
+    int teamId;
 
 public:
-    Soldier(const QString &name, const QString &rank, const QString &role);
+    Soldier(const int id, const QString &name, const int rankId, const QString &role, const int teamId);
 
+    const int getId() const;
     const QString &getName() const;
     void setName(const QString &newName);
-    const QString &getRank() const;
-    void setRank(const QString &newRank);
+    const int getRankId() const;
+    void setRankId(const int newRankId);
     const QString &getRole() const;
     void setRole(const QString &newRole);
+    const int getTeamId() const;
 
-    static void populateTeam(QList<Soldier*> outList, unsigned int id);
-    static Soldier* getSoldierById(int id);
-    static void createSoldier(const QString& name, const QString& rank, const QString& role, const int teamId);
+    static Soldier* getSoldierByName(const int teamId, const QString& name);
+    static void createSoldier(const QString& name, const int rankId, const QString& role, const int teamId);
+    static void updateSoldier(const int id, const QString& name, const int rankId, const QString& role);
     static void getAllSoldierNames(const int teamId, QStringList& outList);
     static void deleteSoldier(const QString& name, const int teamId);
     static int getSoldierId(const int teamId, const QString& name);
+    static const QString getSoldierRole(const int id);
+    static const int getSoldierRankId(const int id);
 };
 
 #endif // SOLDIER_H

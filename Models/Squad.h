@@ -7,15 +7,15 @@
 class Squad
 {
 private:
+    int id;
     QString name;
-    QList<class Team*> teams;
 
 public:
-    Squad(const QString &name);
+    Squad(const int id, const QString &name);
 
+    const int getId() const;
     const QString &getName() const;
     void setName(const QString &newName);
-    const QList<Team *> &getTeams() const;
 
     static void createSquad(const QString& name);
     static bool isSquadExist(const QString& name);
@@ -23,6 +23,7 @@ public:
     static void deleteSquad(const QString& name);
     static void updateSquad(const QString& newName, const QString &oldName);
     static int getIdByName(const QString& name);
+    static Squad* getSquadByName(const QString& name);
 };
 
 #endif // SQUAD_H

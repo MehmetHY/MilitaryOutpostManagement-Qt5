@@ -1,12 +1,12 @@
 #include "squad.h"
 #include "../Data/datamanager.h"
 
-Squad::Squad(const QString &name) : name(name)
+Squad::Squad(const int id, const QString &name) : id(id), name(name)
 {}
 
-const QList<Team *> &Squad::getTeams() const
+const int Squad::getId() const
 {
-    return teams;
+    return id;
 }
 
 const QString &Squad::getName() const
@@ -78,6 +78,13 @@ int Squad::getIdByName(const QString &name)
         return query.value(0).toInt();
     }
     return 0;
+}
+
+Squad *Squad::getSquadByName(const QString &name)
+{
+    int id = getIdByName(name);
+    if (id) return new Squad(id, name);
+    return nullptr;
 }
 
 

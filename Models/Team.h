@@ -7,16 +7,17 @@
 class Team
 {
 private:
+    int id;
     QString name;
-    QList<class Soldier*> soldiers;
+    int squadId;
 
-    void populateSoldiers();
 public:
-    Team(const QString &name);
+    Team(const int id, const QString &name, const int squadId);
 
+    const int getId() const;
     const QString &getName() const;
     void setName(const QString &newName);
-    const QList<Soldier *> &getSoldiers() const;
+    const int getSquadId() const;
 
     static bool isTeamExist(const QString& name, const int squadId);
     static void createTeam(const QString& name, const int squadId);
@@ -24,6 +25,7 @@ public:
     static void deleteTeam(const int squadId, const QString& name);
     static void updateTeam(const int squadId, const QString& oldName, const QString& newName);
     static int getTeamId(const int squadId, const QString& name);
+    static Team* getTeamByName(const int squadId, const QString& name);
 };
 
 #endif // TEAM_H

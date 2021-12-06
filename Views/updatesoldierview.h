@@ -18,13 +18,19 @@ public:
 private:
     MainWindow* mainWindow;
     Ui::UpdateSoldierView *ui;
+    class Squad* activeSquad;
+    class Team* activeTeam;
+    class Soldier* activeSoldier;
+    class Rank* activeRank;
+
     void initializeElements();
     void handleUpdateButtonPressed();
     void handleBackButtonPressed() const;
-    void loadSquadComboBox();
-    void loadTeamComboBox();
-    void loadSoldierComboBox();
-    void loadLineEditTexts();
+    void loadSquad();
+    void loadTeam();
+    void loadSoldier();
+    void loadRank();
+    void setupUpdateFields();
 };
 
 #endif // UPDATESOLDIERVIEW_H

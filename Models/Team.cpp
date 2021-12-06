@@ -2,29 +2,14 @@
 #include "../Data/datamanager.h"
 #include "soldier.h"
 
-void Team::populateSoldiers()
-{
-//    const QString queryString = "SELECT * FROM soldier WHERE team_id = " + QString::number(id) +";";
-//    QSqlQuery query;
-//    DataManager::ExecuteQuery(query, queryString);
-//    if (query.next())
-//    {
-//        int nameId = query.record().indexOf("name");
-//        int rankId = query.record().indexOf("rank");
-//        int roleId = query.record().indexOf("role");
-//        do
-//        {
-//            QString name = query.value(nameId).toString();
-//            QString rank = query.value(rankId).toString();
-//            QString role = query.value(roleId).toString();
-//            Soldier* soldier = new Soldier(name, rank, role);
-//            soldiers << soldier;
-//        } while (query.next());
-//    }
-}
 
-Team::Team(const QString &name) : name(name)
+Team::Team(const int id, const QString &name, const int squadId) : id(id), name(name), squadId(squadId)
 {}
+
+const int Team::getId() const
+{
+    return id;
+}
 
 const QString &Team::getName() const
 {
@@ -36,9 +21,9 @@ void Team::setName(const QString &newName)
     name = newName;
 }
 
-const QList<Soldier *> &Team::getSoldiers() const
+const int Team::getSquadId() const
 {
-    return soldiers;
+    return squadId;
 }
 
 bool Team::isTeamExist(const QString &name, const int squadId)
@@ -103,4 +88,11 @@ int Team::getTeamId(const int squadId, const QString &name)
         return query.value(idId).toInt();
     }
     return 0;
+}
+
+Team *Team::getTeamByName(const int squadId, const QString &name)
+{
+    int id = getTeamId(squadId, name);
+    if (id) return new Team(id, name, squadId);
+    return nullptr;
 }

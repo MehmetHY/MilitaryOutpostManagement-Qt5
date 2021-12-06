@@ -4,6 +4,7 @@
 #include "managesoldiersview.h"
 #include "../Models/squad.h"
 #include "../Models/team.h"
+#include "../Models/rank.h"
 #include "../Models/soldier.h"
 #include "QMessageBox"
 
@@ -30,12 +31,10 @@ void CreateSoldierView::handleCreateButtonPressed() const
         QMessageBox::warning(mainWindow, "Invalid Input", "Name cannot be empty!");
         return;
     }
-    QString rank = ui->rankLineEdit->text().trimmed();
-    if (rank.isEmpty())
+    if (ui->rankComboBox->count() < 1)
     {
-        QMessageBox::warning(mainWindow, "Invalid Input", "Rank cannot be empty!");
+        QMessageBox::warning(mainWindow, "Empty List", "There is no rank!");
         return;
-
     }
     QString role = ui->roleLineEdit->text().trimmed();
     if (role.isEmpty())
@@ -55,9 +54,9 @@ void CreateSoldierView::handleCreateButtonPressed() const
     }
     int squadId = Squad::getIdByName(ui->squadComboBox->currentText());
     int teamId = Team::getTeamId(squadId, ui->teamComboBox->currentText());
-    Soldier::createSoldier(name, rank, role, teamId);
+    int rankId = Rank::getRankId(ui->rankComboBox->currentText());
+    Soldier::createSoldier(name, rankId, role, teamId);
     ui->nameLineEdit->clear();
-    ui->rankLineEdit->clear();
     ui->roleLineEdit->clear();
     QMessageBox::information(mainWindow, "Success", "Soldier created!");
 }
@@ -71,6 +70,7 @@ void CreateSoldierView::initializeElements()
 {
     loadSquadComboBox();
     loadTeamComboBox();
+    loadRankComboBox();
 }
 
 void CreateSoldierView::loadSquadComboBox()
@@ -87,4 +87,11 @@ void CreateSoldierView::loadTeamComboBox()
     int squadId = Squad::getIdByName(ui->squadComboBox->currentText());
     Team::getAllTeamNames(squadId, teams);
     ui->teamComboBox->addItems(teams);
+}
+
+void CreateSoldierView::loadRankComboBox()
+{
+    QStringList ranks;
+    Rank::getAllRankNames(ranks);
+    ui->rankComboBox->addItems(ranks);
 }

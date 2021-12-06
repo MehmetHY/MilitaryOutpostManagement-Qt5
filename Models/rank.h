@@ -13,6 +13,8 @@ public:
     static void deleteRank(const QString& name);
     static void getAllRankNames(QStringList& outList);
     static void updateRank(const QString& oldName, const QString& newName);
+    static int getRankId(const QString& name);
+    static const QString getRankName(const int id);
 };
 
 #endif // RANK_H
