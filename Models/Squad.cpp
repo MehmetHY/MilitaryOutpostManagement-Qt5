@@ -24,7 +24,7 @@ void Squad::createSquad(const QString &name)
     QSqlQuery query;
     query.prepare("INSERT INTO squad (name) VALUES (:name)");
     query.bindValue(":name", name);
-    query.exec();
+    DataManager::ExecuteQuery(query);
 }
 
 bool Squad::isSquadExist(const QString &name)
@@ -32,7 +32,7 @@ bool Squad::isSquadExist(const QString &name)
     QSqlQuery query;
     query.prepare("SELECT COUNT(*) FROM squad WHERE name = (:name)");
     query.bindValue(":name", name);
-    query.exec();
+    DataManager::ExecuteQuery(query);
     return query.next() && query.value(0).toInt() > 0;
 }
 
@@ -65,7 +65,7 @@ void Squad::updateSquad(const QString &newName, const QString &oldName)
     query.prepare("UPDATE squad SET name = :newName WHERE name = :oldName;");
     query.bindValue(":newName", newName);
     query.bindValue(":oldName", oldName);
-    query.exec();
+    DataManager::ExecuteQuery(query);
 }
 
 int Squad::getIdByName(const QString &name)

@@ -32,7 +32,7 @@ bool Team::isTeamExist(const QString &name, const int squadId)
     query.prepare("SELECT COUNT(*) FROM team WHERE name = :name AND squad_id = :squadId;");
     query.bindValue(":name", name);
     query.bindValue(":squadId", squadId);
-    query.exec();
+    DataManager::ExecuteQuery(query);
     return query.next() && query.value(0).toInt() > 0;
 }
 
@@ -42,7 +42,7 @@ void Team::createTeam(const QString &name, const int squadId)
     query.prepare("INSERT INTO team (name, squad_id) VALUES (:name, :squadId)");
     query.bindValue(":name", name);
     query.bindValue(":squadId", squadId);
-    query.exec();
+    DataManager::ExecuteQuery(query);
 }
 
 void Team::getAllTeamNames(const int squadId, QStringList& outList)
@@ -74,7 +74,7 @@ void Team::updateTeam(const int squadId, const QString &oldName, const QString &
     query.bindValue(":newName", newName);
     query.bindValue(":squadId", squadId);
     query.bindValue(":oldName", oldName);
-    query.exec();
+    DataManager::ExecuteQuery(query);
 }
 
 int Team::getTeamId(const int squadId, const QString &name)

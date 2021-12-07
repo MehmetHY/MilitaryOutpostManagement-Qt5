@@ -34,6 +34,11 @@ void DeleteRankView::handleDeleteButtonPressed()
         return;
     }
     QString name = ui->comboBox->currentText();
+    if (name == "No rank")
+    {
+        QMessageBox::warning(mainWindow, "No Permission", "'No rank' cannot be deleted!");
+        return;
+    }
     QMessageBox::StandardButton reply = QMessageBox::question(mainWindow, "Delete", "Are you sure you want to delete rank " + name + "?");
     if (reply == QMessageBox::Yes)
     {

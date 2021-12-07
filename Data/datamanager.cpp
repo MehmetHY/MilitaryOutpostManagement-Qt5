@@ -53,7 +53,8 @@ bool DataManager::ConnectSQLITE()
 
 bool DataManager::ExecuteQuery(QSqlQuery& outQuery, const QString queryString)
 {
-    if (!outQuery.exec(queryString))
+    bool result = queryString.isEmpty() ? outQuery.exec() : outQuery.exec(queryString);
+    if (!result)
     {
         qDebug() << "Query failed: " << queryString;
         qDebug() << outQuery.lastError().text();
@@ -70,6 +71,7 @@ void DataManager::CreateTables()
     CreateSoldierTable();
     CreateDutyTable();
 //    InsertRanks();
+    InsertNullRecords();
 }
 
 void DataManager::CreateSquadTable()
@@ -166,4 +168,11 @@ VALUES
     QSqlQuery query;
     ExecuteQuery(query, queryString);
 
+}
+
+void DataManager::InsertNullRecords()
+{
+    QSqlQuery query;
+    const QString queryString = "INSERT INTO rank (name) VALUES ('No rank')";
+    ExecuteQuery(query, queryString);
 }

@@ -1,5 +1,6 @@
 #include "soldier.h"
 #include "../Data/datamanager.h"
+#include "rank.h"
 
 Soldier::Soldier(const int id, const QString &name, const int rankId, const QString &role, const int teamId)
     : id(id), name(name), rankId(rankId), role(role), teamId(teamId)
@@ -65,17 +66,18 @@ void Soldier::createSoldier(const QString &name, const int rankId, const QString
     query.bindValue(":rankId", rankId);
     query.bindValue(":role", role);
     query.bindValue(":teamId", teamId);
-    query.exec();
+    DataManager::ExecuteQuery(query);
 }
 
 void Soldier::updateSoldier(const int id, const QString &name, const int rankId, const QString &role)
 {
     QSqlQuery query;
     query.prepare("UPDATE soldier SET name = :name, rank_id = :rankId, role = :role WHERE id = :id;");
+    query.bindValue(":id", id);
     query.bindValue(":name", name);
     query.bindValue(":rankId", rankId);
     query.bindValue(":role", role);
-    query.exec();
+    DataManager::ExecuteQuery(query);
 }
 
 void Soldier::getAllSoldierNames(const int teamId, QStringList &outList)
@@ -129,12 +131,13 @@ const QString Soldier::getSoldierRole(const int id)
 const int Soldier::getSoldierRankId(const int id)
 {
     QSqlQuery query;
-    const QString queryString = "SELECT  * FROM soldier WHERE id = " + QString::number(id) + ";";
+    const QString queryString = "SELECT * FROM soldier WHERE id = " + QString::number(id) + ";";
     DataManager::ExecuteQuery(query, queryString);
     if (query.next())
     {
         int rankIdIndex = query.record().indexOf("rank_id");
-        return query.value(rankIdIndex).toInt();
+        int rankId = query.value(rankIdIndex).toInt();
+        if (Rank::isRankExist(rankId)) return rankId;
     }
-    return 0;
+    return Rank::getNullRankId();
 }

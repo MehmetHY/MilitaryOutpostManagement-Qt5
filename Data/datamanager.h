@@ -25,13 +25,14 @@ private:    // functions
     static void CreateSoldierTable();
     static void CreateDutyTable();
     static void InsertRanks();
+    static void InsertNullRecords();
 
 public:     // methods
     static void Initialize();
     static void End();
     static void CreateConnection(const DatabaseType type = DatabaseType::SQLITE);
     static void CloseConnection();
-    static bool ExecuteQuery(class QSqlQuery& outQuery, const QString queryString);
+    static bool ExecuteQuery(class QSqlQuery& outQuery, const QString queryString = "");
 };
 
 #endif // DATAMANAGER_H
