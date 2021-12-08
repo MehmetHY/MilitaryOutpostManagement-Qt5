@@ -47,6 +47,12 @@ void UpdateRankView::handleUpdateButtonPressed()
         QMessageBox::warning(mainWindow, "Invalid Input", "Rank " + newName + " already exist!");
         return;
     }
+    const QString nullRankName = Rank::getRankName(Rank::getNullRankId());
+    if (nullRankName == ui->comboBox->currentText())
+    {
+        QMessageBox::warning(mainWindow, "Invalid Input", "Rank: '" + nullRankName + "' cannot be changed!");
+        return;
+    }
     QString oldName = ui->comboBox->currentText();
     Rank::updateRank(oldName, newName);
     ui->lineEdit->clear();
