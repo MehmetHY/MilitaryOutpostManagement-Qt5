@@ -2,19 +2,19 @@
 #include "../Data/datamanager.h"
 #include "soldier.h"
 
-Duty::Duty(const QString &name, Soldier *soldier, const QDateTime &startDate, const QDateTime &endDate)
-    : name(name), soldier(soldier), startDate(startDate), endDate(endDate)
+const int Duty::getSoldierId() const
+{
+    return soldierId;
+}
+
+void Duty::setSoldierId(const int newSoldierId)
+{
+    soldierId = newSoldierId;
+}
+
+Duty::Duty(const QString &name, const int soldierId, const QDateTime &startDate, const QDateTime &endDate)
+    : name(name), soldierId(soldierId), startDate(startDate), endDate(endDate)
 {}
-
-Soldier *Duty::getSoldier() const
-{
-    return soldier;
-}
-
-void Duty::setSoldier(Soldier *newSoldier)
-{
-    soldier = newSoldier;
-}
 
 const QDateTime &Duty::getStartDate() const
 {

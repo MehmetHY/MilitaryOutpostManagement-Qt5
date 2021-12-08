@@ -125,6 +125,10 @@ set(PROJECT_SOURCES
         Views/deletedutyview.h
         Views/deletedutyview.cpp
         Views/deletedutyview.ui
+
+        Views/updatedutyview.h
+        Views/updatedutyview.cpp
+        Views/updatedutyview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
