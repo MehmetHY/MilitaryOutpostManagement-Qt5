@@ -25,8 +25,10 @@ public:
     void setEndDate(const QDateTime &newEndDate);
 
     static void getAllDuties(QList<Duty*>& outList);
+    static void getAllDutyNames(QStringList& outList);
     static void createDuty(const QString& name, const int soldierId, const QDateTime& startDate, const QDateTime& endDate);
     static bool isDutyExist(const QString& name);
+    static void deleteDuty(const QString& name);
 };
 
 #endif // DUTY_H

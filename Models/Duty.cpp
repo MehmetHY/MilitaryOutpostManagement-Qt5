@@ -70,6 +70,21 @@ void Duty::getAllDuties(QList<Duty*>& outList)
 
 }
 
+void Duty::getAllDutyNames(QStringList &outList)
+{
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM duty;";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int nameIndex = query.record().indexOf("name");
+        do
+        {
+            outList << query.value(nameIndex).toString();
+        } while (query.next());
+    }
+}
+
 void Duty::createDuty(const QString &name, const int soldierId, const QDateTime &startDate, const QDateTime &endDate)
 {
     QSqlQuery query;
@@ -88,4 +103,12 @@ bool Duty::isDutyExist(const QString &name)
     query.bindValue(":name", name);
     DataManager::ExecuteQuery(query);
     return query.next() && query.value(0).toInt() > 0;
+}
+
+void Duty::deleteDuty(const QString &name)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM duty WHERE name = :name;");
+    query.bindValue(":name", name);
+    DataManager::ExecuteQuery(query);
 }

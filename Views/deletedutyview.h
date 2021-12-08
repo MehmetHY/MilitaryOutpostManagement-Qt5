@@ -20,6 +20,8 @@ private:
     Ui::DeleteDutyView *ui;
     void handleBackButtonPressed() const;
     void handleDeleteButtonPressed();
+    void loadDutiesFromDb();
+    void unloadDuties();
 };
 
 #endif // DELETEDUTYVIEW_H

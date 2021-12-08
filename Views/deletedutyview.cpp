@@ -13,6 +13,7 @@ DeleteDutyView::DeleteDutyView(MainWindow *parent) :
     ui->setupUi(this);
     connect(ui->backButton, &QPushButton::pressed, this, &DeleteDutyView::handleBackButtonPressed);
     connect(ui->deleteButton, &QPushButton::pressed, this, &DeleteDutyView::handleDeleteButtonPressed);
+    loadDutiesFromDb();
 }
 
 DeleteDutyView::~DeleteDutyView()
@@ -27,5 +28,29 @@ void DeleteDutyView::handleBackButtonPressed() const
 
 void DeleteDutyView::handleDeleteButtonPressed()
 {
+    if (ui->comboBox->count() < 1)
+    {
+        QMessageBox::warning(mainWindow, "Empty List", "There is no duty!");
+        return;
+    }
+    QString name = ui->comboBox->currentText();
+    QMessageBox::StandardButton reply = QMessageBox::question(mainWindow, "Deletion", "Are you sure you want to delete Duty '" + name + "'?");
+    if (reply == QMessageBox::Yes)
+    {
+        Duty::deleteDuty(name);
+        unloadDuties();
+        loadDutiesFromDb();
+    }
+}
 
+void DeleteDutyView::loadDutiesFromDb()
+{
+    QStringList duties;
+    Duty::getAllDutyNames(duties);
+    ui->comboBox->addItems(duties);
+}
+
+void DeleteDutyView::unloadDuties()
+{
+    ui->comboBox->clear();
 }
