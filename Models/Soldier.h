@@ -26,6 +26,7 @@ public:
     const int getTeamId() const;
 
     static Soldier* getSoldierByName(const int teamId, const QString& name);
+    static Soldier* getSoldierById(const int id);
     static void createSoldier(const QString& name, const int rankId, const QString& role, const int teamId);
     static void updateSoldier(const int id, const QString& name, const int rankId, const QString& role);
     static void getAllSoldierNames(const int teamId, QStringList& outList);

@@ -24,6 +24,7 @@ public:
     static void updateSquad(const QString& newName, const QString &oldName);
     static int getIdByName(const QString& name);
     static Squad* getSquadByName(const QString& name);
+    static Squad* getSquadById(const int id);
 };
 
 #endif // SQUAD_H

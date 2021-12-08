@@ -58,6 +58,29 @@ Soldier* Soldier::getSoldierByName(const int teamId, const QString& name)
     return nullptr;
 }
 
+Soldier *Soldier::getSoldierById(const int id)
+{
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM soldier WHERE id = " + QString::number(id) + ";";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int idIndex = query.record().indexOf("id");
+        int nameIndex = query.record().indexOf("name");
+        int rankIdIndex = query.record().indexOf("rank_id");
+        int roleIndex = query.record().indexOf("role");
+        int teamIdIndex = query.record().indexOf("team_id");
+
+        int id = query.value(idIndex).toInt();
+        QString name = query.value(nameIndex).toString();
+        int rankId = query.value(rankIdIndex).toInt();
+        QString role = query.value(roleIndex).toString();
+        int teamId = query.value(teamIdIndex).toInt();
+        return new Soldier(id, name, rankId, role, teamId);
+    }
+    return nullptr;
+}
+
 void Soldier::createSoldier(const QString &name, const int rankId, const QString &role, const int teamId)
 {
     QSqlQuery query;

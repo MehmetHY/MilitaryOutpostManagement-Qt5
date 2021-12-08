@@ -26,6 +26,7 @@ public:
     static void updateTeam(const int squadId, const QString& oldName, const QString& newName);
     static int getTeamId(const int squadId, const QString& name);
     static Team* getTeamByName(const int squadId, const QString& name);
+    static Team* getTeamById(const int id);
 };
 
 #endif // TEAM_H

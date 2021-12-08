@@ -96,3 +96,22 @@ Team *Team::getTeamByName(const int squadId, const QString &name)
     if (id) return new Team(id, name, squadId);
     return nullptr;
 }
+
+Team *Team::getTeamById(const int id)
+{
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM team WHERE id = " + QString::number(id) + ";";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int idIndex = query.record().indexOf("id");
+        int nameIndex = query.record().indexOf("name");
+        int squadIdIndex = query.record().indexOf("squad_id");
+
+        int id = query.value(idIndex).toInt();
+        QString name = query.value(nameIndex).toString();
+        int squadId = query.value(squadIdIndex).toInt();
+        return new Team(id, name, squadId);
+    }
+    return nullptr;
+}

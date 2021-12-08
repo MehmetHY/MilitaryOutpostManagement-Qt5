@@ -32,6 +32,7 @@ public:
     static bool isDutyExist(const QString& name);
     static void deleteDuty(const QString& name);
     static Duty* getDutyByName(const QString& name);
+    static void updateDuty(const int id, const QString& name, const int soldierId, const QDateTime& startDate, const QDateTime& endDate);
 };
 
 #endif // DUTY_H

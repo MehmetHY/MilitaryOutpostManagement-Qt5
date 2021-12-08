@@ -87,4 +87,21 @@ Squad *Squad::getSquadByName(const QString &name)
     return nullptr;
 }
 
+Squad *Squad::getSquadById(const int id)
+{
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM squad WHERE id = " + QString::number(id) + ";";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int idIndex = query.record().indexOf("id");
+        int nameIndex = query.record().indexOf("name");
+
+        int id = query.value(idIndex).toInt();
+        QString name = query.value(nameIndex).toString();
+        return new Squad(id, name);
+    }
+    return nullptr;
+}
+
 

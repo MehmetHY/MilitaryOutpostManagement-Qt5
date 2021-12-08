@@ -141,3 +141,15 @@ Duty *Duty::getDutyByName(const QString &name)
     }
     return nullptr;
 }
+
+void Duty::updateDuty(const int id, const QString &name, const int soldierId, const QDateTime &startDate, const QDateTime &endDate)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE duty SET name = :name, soldier_id = :soldierId, start_date = :startDate, end_date = :endDate WHERE id = :id;");
+    query.bindValue(":id", id);
+    query.bindValue(":name", name);
+    query.bindValue(":soldierId", soldierId);
+    query.bindValue(":startDate", startDate);
+    query.bindValue(":endDate", endDate);
+    DataManager::ExecuteQuery(query);
+}
