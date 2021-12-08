@@ -38,7 +38,7 @@ void UpdateDutyView::handleUpdateButtonPressed()
 
 void UpdateDutyView::handleBackButtonPressed() const
 {
-
+    mainWindow->changeRootWidget(new ManageDutiesView(mainWindow));
 }
 
 void UpdateDutyView::handleSquadChanged()
@@ -53,12 +53,15 @@ void UpdateDutyView::handleTeamChanged()
 
 void UpdateDutyView::initializeElements()
 {
-
+    loadDutiesFromDb();
 }
 
 void UpdateDutyView::loadDutiesFromDb()
 {
-
+    QStringList duties;
+    Duty::getAllDutyNames(duties);
+    ui->dutyComboBox->addItems(duties);
+    setupActiveDuty();
 }
 
 void UpdateDutyView::loadSquadsFromDb()
@@ -104,6 +107,17 @@ void UpdateDutyView::resetActiveTeam()
 void UpdateDutyView::setupActiveTeam()
 {
 
+}
+
+void UpdateDutyView::resetActiveDuty()
+{
+
+}
+
+void UpdateDutyView::setupActiveDuty()
+{
+    QString name = ui->dutyComboBox->currentText();
+    activeDuty = name.isEmpty() ? nullptr : Duty::getDutyByName(name);
 }
 
 void UpdateDutyView::resetInputFields()

@@ -12,9 +12,14 @@ void Duty::setSoldierId(const int newSoldierId)
     soldierId = newSoldierId;
 }
 
-Duty::Duty(const QString &name, const int soldierId, const QDateTime &startDate, const QDateTime &endDate)
-    : name(name), soldierId(soldierId), startDate(startDate), endDate(endDate)
+Duty::Duty(const int id, const QString &name, const int soldierId, const QDateTime &startDate, const QDateTime &endDate)
+    : id(id), name(name), soldierId(soldierId), startDate(startDate), endDate(endDate)
 {}
+
+const int Duty::getId() const
+{
+    return id;
+}
 
 const QDateTime &Duty::getStartDate() const
 {
@@ -111,4 +116,28 @@ void Duty::deleteDuty(const QString &name)
     query.prepare("DELETE FROM duty WHERE name = :name;");
     query.bindValue(":name", name);
     DataManager::ExecuteQuery(query);
+}
+
+Duty *Duty::getDutyByName(const QString &name)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM duty WHERE name = :name;");
+    query.bindValue(":name", name);
+    DataManager::ExecuteQuery(query);
+    if (query.next())
+    {
+        int idIndex = query.record().indexOf("id");
+        int nameIndex = query.record().indexOf("name");
+        int soldierIdIndex = query.record().indexOf("soldier_id");
+        int startDateIndex = query.record().indexOf("start_date");
+        int endDateIndex = query.record().indexOf("end_date");
+
+        int id = query.value(idIndex).toInt();
+        QString name = query.value(nameIndex).toString();
+        int soldierId = query.value(soldierIdIndex).toInt();
+        QDateTime startDate = query.value(startDateIndex).toDateTime();
+        QDateTime endDate = query.value(endDateIndex).toDateTime();
+        return new Duty(id, name, soldierId, startDate, endDate);
+    }
+    return nullptr;
 }

@@ -4,6 +4,7 @@
 #include "dashboard.h"
 #include "createdutyview.h"
 #include "deletedutyview.h"
+#include "updatedutyview.h"
 
 ManageDutiesView::ManageDutiesView(MainWindow *parent) :
     QWidget(parent),
@@ -29,7 +30,7 @@ void ManageDutiesView::handleCreateButtonPressed() const
 
 void ManageDutiesView::handleUpdateButtonPressed() const
 {
-
+    mainWindow->changeRootWidget(new UpdateDutyView(mainWindow));
 }
 
 void ManageDutiesView::handleDeleteButtonPressed() const

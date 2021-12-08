@@ -40,6 +40,8 @@ private:
     void setupActiveSquad();
     void resetActiveTeam();
     void setupActiveTeam();
+    void resetActiveDuty();
+    void setupActiveDuty();
     void resetInputFields();
     void setupInputFields();
 };

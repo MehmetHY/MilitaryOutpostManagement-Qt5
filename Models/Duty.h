@@ -7,14 +7,16 @@
 class Duty
 {
 private:
+    int id;
     QString name;
     int soldierId;
     QDateTime startDate;
     QDateTime endDate;
 
 public:
-    Duty(const QString &name, const int soldierId, const QDateTime &startDate, const QDateTime &endDate);
+    Duty(const int id, const QString &name, const int soldierId, const QDateTime &startDate, const QDateTime &endDate);
 
+    const int getId() const;
     const QString &getName() const;
     void setName(const QString &newName);
     const int getSoldierId() const;
@@ -29,6 +31,7 @@ public:
     static void createDuty(const QString& name, const int soldierId, const QDateTime& startDate, const QDateTime& endDate);
     static bool isDutyExist(const QString& name);
     static void deleteDuty(const QString& name);
+    static Duty* getDutyByName(const QString& name);
 };
 
 #endif // DUTY_H
