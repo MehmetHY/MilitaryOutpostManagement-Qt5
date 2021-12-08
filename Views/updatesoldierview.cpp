@@ -66,6 +66,8 @@ void UpdateSoldierView::handleUpdateButtonPressed()
     int rankId = Rank::getRankId(ui->rankComboBox->currentText());
     Soldier::updateSoldier(activeSoldier->getId(), name, rankId, role);
     QMessageBox::information(mainWindow, "Success", "Soldier updated!");
+    resetElements();
+    initializeElements();
 }
 
 void UpdateSoldierView::handleBackButtonPressed() const
@@ -114,20 +116,22 @@ void UpdateSoldierView::handleSoldierChanged()
 
 void UpdateSoldierView::initializeElements()
 {
+    handlingSoldierChanged = true;
+    handlingSquadChanged = true;
+    handlingTeamChanged = true;
     loadSquadsFromDb();
     loadTeamsFromDb();
     loadSoldiersFromDb();
     loadRanksFromDb();
     setupInputFields();
+    handlingSoldierChanged = false;
+    handlingSquadChanged = false;
+    handlingTeamChanged = false;
 }
 
 void UpdateSoldierView::resetElements()
 {
     unloadSquads();
-    unloadTeams();
-    unloadSoldiers();
-    unloadRanks();
-    resetInputFields();
 }
 
 void UpdateSoldierView::loadSquadsFromDb()
@@ -145,6 +149,7 @@ void UpdateSoldierView::loadSquadsFromDb()
 
 void UpdateSoldierView::loadTeamsFromDb()
 {
+    if (!activeSquad) return;
     QStringList teams;
     Team::getAllTeamNames(activeSquad->getId(), teams);
     if (teams.count() < 1)
@@ -158,6 +163,7 @@ void UpdateSoldierView::loadTeamsFromDb()
 
 void UpdateSoldierView::loadSoldiersFromDb()
 {
+    if (!activeTeam) return;
     QStringList soldiers;
     Soldier::getAllSoldierNames(activeTeam->getId(), soldiers);
     if (soldiers.count() < 1)
@@ -179,12 +185,18 @@ void UpdateSoldierView::loadRanksFromDb()
 void UpdateSoldierView::unloadSquads()
 {
     ui->squadComboBox->clear();
+    handlingTeamChanged = true;
+    unloadTeams();
+    handlingTeamChanged = false;
     resetActiveSquad();
 }
 
 void UpdateSoldierView::unloadTeams()
 {
     ui->teamComboBox->clear();
+    handlingSoldierChanged = true;
+    unloadSoldiers();
+    handlingSoldierChanged = false;
     resetActiveTeam();
 }
 
@@ -225,6 +237,7 @@ void UpdateSoldierView::resetActiveTeam()
 
 void UpdateSoldierView::setupActiveTeam()
 {
+    if (!activeSquad) return;
     activeTeam = Team::getTeamByName(activeSquad->getId(), ui->teamComboBox->currentText());
 }
 
@@ -239,6 +252,7 @@ void UpdateSoldierView::resetActiveSoldier()
 
 void UpdateSoldierView::setupActiveSoldier()
 {
+    if (!activeTeam) return;
     activeSoldier = Soldier::getSoldierByName(activeTeam->getId(), ui->soldierComboBox->currentText());
 }
 
