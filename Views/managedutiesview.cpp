@@ -2,6 +2,7 @@
 #include "ui_managedutiesview.h"
 #include "../mainwindow.h"
 #include "dashboard.h"
+#include "createdutyview.h"
 
 ManageDutiesView::ManageDutiesView(MainWindow *parent) :
     QWidget(parent),
@@ -22,7 +23,7 @@ ManageDutiesView::~ManageDutiesView()
 
 void ManageDutiesView::handleCreateButtonPressed() const
 {
-
+    mainWindow->changeRootWidget(new CreateDutyView(mainWindow));
 }
 
 void ManageDutiesView::handleUpdateButtonPressed() const

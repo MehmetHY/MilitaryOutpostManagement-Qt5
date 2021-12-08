@@ -117,6 +117,10 @@ set(PROJECT_SOURCES
         Views/managedutiesview.h
         Views/managedutiesview.cpp
         Views/managedutiesview.ui
+
+        Views/createdutyview.h
+        Views/createdutyview.cpp
+        Views/createdutyview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
