@@ -113,6 +113,10 @@ set(PROJECT_SOURCES
         Views/updaterankview.h
         Views/updaterankview.cpp
         Views/updaterankview.ui
+
+        Views/managedutiesview.h
+        Views/managedutiesview.cpp
+        Views/managedutiesview.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

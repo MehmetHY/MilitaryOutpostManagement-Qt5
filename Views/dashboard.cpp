@@ -6,6 +6,7 @@
 #include "manageteamsview.h"
 #include "manageranksview.h"
 #include "managesoldiersview.h"
+#include "managedutiesview.h"
 
 DashBoard::DashBoard(MainWindow *parent) : QWidget(parent), ui(new Ui::DashBoard), mainWindow(parent)
 {
@@ -30,7 +31,7 @@ void DashBoard::handleViewDutiesButtonPressed()
 
 void DashBoard::handleManageDutiesButtonPressed()
 {
-
+    mainWindow->changeRootWidget(new ManageDutiesView(mainWindow));
 }
 
 void DashBoard::handleManageRanksButtonPressed()
