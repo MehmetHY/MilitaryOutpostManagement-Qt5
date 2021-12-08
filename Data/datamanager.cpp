@@ -136,7 +136,7 @@ void DataManager::CreateDutyTable()
 CREATE TABLE IF NOT EXISTS duty
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name STRING(50) NOT NULL,
+    name STRING(50) NOT NULL UNIQUE,
     soldier_id INTEGER REFERENCES soldier(id) NOT NULL,
     start_date DATETIME,
     end_date DATETIME

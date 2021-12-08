@@ -69,3 +69,23 @@ void Duty::getAllDuties(QList<Duty*>& outList)
 //    }
 
 }
+
+void Duty::createDuty(const QString &name, const int soldierId, const QDateTime &startDate, const QDateTime &endDate)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO duty (name, soldier_id, start_date, end_date) VALUES (:name, :soldierId, :startDate, :endDate);");
+    query.bindValue(":name", name);
+    query.bindValue(":soldierId", soldierId);
+    query.bindValue(":startDate", startDate);
+    query.bindValue(":endDate", endDate);
+    DataManager::ExecuteQuery(query);
+}
+
+bool Duty::isDutyExist(const QString &name)
+{
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM duty WHERE name = :name;");
+    query.bindValue(":name", name);
+    DataManager::ExecuteQuery(query);
+    return query.next() && query.value(0).toInt() > 0;
+}
