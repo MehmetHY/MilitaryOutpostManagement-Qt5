@@ -16,11 +16,11 @@ CreateDutyView::CreateDutyView(MainWindow *parent) :
     activeSquad(nullptr), activeTeam(nullptr), handlingSquadComboBoxChanged(false), handlingTeamComboBoxChanged(false)
 {
     ui->setupUi(this);
+    InitializeElements();
     connect(ui->backButton, &QPushButton::pressed, this, &CreateDutyView::handleBackButtonPressed);
     connect(ui->createButton, &QPushButton::pressed, this, &CreateDutyView::handleCreateButtonPressed);
     connect(ui->squadComboBox, &QComboBox::currentTextChanged, this, &CreateDutyView::handleSquadComboBoxChanged);
     connect(ui->teamComboBox, &QComboBox::currentTextChanged, this, &CreateDutyView::handleTeamComboBoxChanged);
-    InitializeElements();
 }
 
 CreateDutyView::~CreateDutyView()
