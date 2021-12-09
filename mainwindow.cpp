@@ -20,5 +20,6 @@ void MainWindow::changeRootWidget(QWidget *widget)
     if (activeMenuWidget) activeMenuWidget->deleteLater();
     activeMenuWidget = widget;
     setCentralWidget(widget);
+    this->adjustSize();
 }
 
