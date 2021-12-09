@@ -20,6 +20,7 @@ private:
     MainWindow* mainWindow;
 
     void setupDutyTable();
+    void handleBackButtonPressed() const;
 };
 
 #endif // DUTYVIEW_H

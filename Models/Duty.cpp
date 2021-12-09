@@ -53,26 +53,26 @@ void Duty::setName(const QString &newName)
 
 void Duty::getAllDuties(QList<Duty*>& outList)
 {
-//    QString queryString = "SELECT * FROM duty;";
-//    QSqlQuery query;
-//    DataManager::ExecuteQuery(query, queryString);
-//    if (query.next())
-//    {
-//        int nameColumnId = query.record().indexOf("name");
-//        int soldierColumnId = query.record().indexOf("soldier_id");
-//        int startColumnId = query.record().indexOf("start_date");
-//        int endColumnId = query.record().indexOf("end_date");
-//        do
-//        {
-//            QString name = query.value(nameColumnId).toString();
-//            int soldierId = query.value(soldierColumnId).toInt();
-//            Soldier* soldier = Soldier::getSoldierById(soldierId);
-//            QDateTime startDate = query.value(startColumnId).toDateTime();
-//            QDateTime endDate = query.value(endColumnId).toDateTime();
-//            outList << new Duty(name, soldier, startDate, endDate);
-//        } while (query.next());
-//    }
-
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM duty;";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int idIndex = query.record().indexOf("id");
+        int nameIndex = query.record().indexOf("name");
+        int soldierIdIndex = query.record().indexOf("soldier_id");
+        int startDateIndex = query.record().indexOf("start_date");
+        int endDateIndex = query.record().indexOf("end_date");
+        do
+        {
+            int id = query.value(idIndex).toInt();
+            QString name = query.value(nameIndex).toString();
+            int soldierId = query.value(soldierIdIndex).toInt();
+            QDateTime startDate = query.value(startDateIndex).toDateTime();
+            QDateTime endDate = query.value(endDateIndex).toDateTime();
+            outList << new Duty(id, name, soldierId, startDate, endDate);
+        } while (query.next());
+    }
 }
 
 void Duty::getAllDutyNames(QStringList &outList)

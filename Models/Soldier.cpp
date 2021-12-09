@@ -164,3 +164,16 @@ const int Soldier::getSoldierRankId(const int id)
     }
     return Rank::getNullRankId();
 }
+
+const QString Soldier::getSoldierNameById(const int id)
+{
+    QSqlQuery query;
+    const QString queryString = "SELECT * FROM soldier WHERE id = " + QString::number(id) + ";";
+    DataManager::ExecuteQuery(query, queryString);
+    if (query.next())
+    {
+        int nameIndex = query.record().indexOf("name");
+        return query.value(nameIndex).toString();
+    }
+    return "";
+}

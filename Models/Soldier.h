@@ -34,6 +34,7 @@ public:
     static int getSoldierId(const int teamId, const QString& name);
     static const QString getSoldierRole(const int id);
     static const int getSoldierRankId(const int id);
+    static const QString getSoldierNameById(const int id);
 };
 
 #endif // SOLDIER_H
