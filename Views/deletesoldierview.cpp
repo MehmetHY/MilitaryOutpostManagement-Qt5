@@ -46,7 +46,7 @@ void DeleteSoldierView::handleDeleteButtonPressed()
         return;
     }
     QString name = ui->soldierComboBox->currentText();
-    QMessageBox::StandardButton reply = QMessageBox::question(mainWindow, "Delete", "Are you sure you want to delete soldier " + name + "?");
+    QMessageBox::StandardButton reply = QMessageBox::question(mainWindow, "Delete", "Are you sure you want to delete soldier " + name + "?\nAll associated duties will be deleted!");
     if (reply == QMessageBox::Yes)
     {
         int squadId = Squad::getIdByName(ui->squadComboBox->currentText());

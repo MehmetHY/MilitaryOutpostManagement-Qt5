@@ -62,7 +62,7 @@ void DeleteTeamView::handleDeleteButtonPressed()
         return;
     }
     QString name = ui->teamComboBox->currentText();
-    QMessageBox::StandardButton reply = QMessageBox::question(mainWindow, "Delete", "Are you sure you want to delete squad: " + name);
+    QMessageBox::StandardButton reply = QMessageBox::question(mainWindow, "Delete", "Are you sure you want to delete squad: " + name + "?\nAll associated soldiers and duties will be deleted!");
     if (reply == QMessageBox::Yes)
     {
         int squadId = Squad::getIdByName(ui->squadComboBox->currentText());

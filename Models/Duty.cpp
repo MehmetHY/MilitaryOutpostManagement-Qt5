@@ -153,3 +153,10 @@ void Duty::updateDuty(const int id, const QString &name, const int soldierId, co
     query.bindValue(":endDate", endDate);
     DataManager::ExecuteQuery(query);
 }
+
+void Duty::deleteAllDutiesOfSoldier(const int soldierId)
+{
+    QSqlQuery query;
+    const QString queryString = "DELETE FROM duty WHERE soldier_id = " + QString::number(soldierId) + ";";
+    DataManager::ExecuteQuery(query, queryString);
+}

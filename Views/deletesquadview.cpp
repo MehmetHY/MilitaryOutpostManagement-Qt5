@@ -2,6 +2,7 @@
 #include "ui_deletesquadview.h"
 #include "../mainwindow.h"
 #include "../Models/squad.h"
+#include "../Models/team.h"
 #include "managesquadsview.h"
 
 #include <QMessageBox>
@@ -39,11 +40,13 @@ void DeleteSquadView::handleDeleteButtonPressed()
         QMessageBox::warning(mainWindow, "Empty List", "There is no squad!");
         return;
     }
-    QString squad = ui->comboBox->currentText();
-    QMessageBox::StandardButton reply = QMessageBox::question(mainWindow, "Delete", "Are you sure you want to delete squad: " + squad);
+    QString name = ui->comboBox->currentText();
+    QMessageBox::StandardButton reply = QMessageBox::question(mainWindow, "Delete", "Are you sure you want to delete squad: " + name + "?\nAll associated teams, soldiers and duties will be deleted!");
     if (reply == QMessageBox::Yes)
     {
-        Squad::deleteSquad(squad);
+        int squadId = Squad::getIdByName(name);
+        Team::deleteAllTeamsOfSquad(squadId);
+        Squad::deleteSquad(name);
         ui->comboBox->clear();
         initializeComboBox();
     }

@@ -27,6 +27,7 @@ public:
     static int getTeamId(const int squadId, const QString& name);
     static Team* getTeamByName(const int squadId, const QString& name);
     static Team* getTeamById(const int id);
+    static void deleteAllTeamsOfSquad(const int squadId);
 };
 
 #endif // TEAM_H

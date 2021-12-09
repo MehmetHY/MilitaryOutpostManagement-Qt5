@@ -33,6 +33,7 @@ public:
     static void deleteDuty(const QString& name);
     static Duty* getDutyByName(const QString& name);
     static void updateDuty(const int id, const QString& name, const int soldierId, const QDateTime& startDate, const QDateTime& endDate);
+    static void deleteAllDutiesOfSoldier(const int soldierId);
 };
 
 #endif // DUTY_H

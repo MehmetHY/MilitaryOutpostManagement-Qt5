@@ -62,6 +62,8 @@ void Team::getAllTeamNames(const int squadId, QStringList& outList)
 
 void Team::deleteTeam(const int squadId, const QString &name)
 {
+    int teamId = getTeamId(squadId, name);
+    Soldier::deleteAllSoldiersOfTeam(teamId);
     const QString queryString = "DELETE FROM team WHERE squad_id = " + QString::number(squadId) + " AND name = '" + name + "';";
     QSqlQuery query;
     DataManager::ExecuteQuery(query, queryString);
@@ -114,4 +116,14 @@ Team *Team::getTeamById(const int id)
         return new Team(id, name, squadId);
     }
     return nullptr;
+}
+
+void Team::deleteAllTeamsOfSquad(const int squadId)
+{
+    QStringList teamNames;
+    getAllTeamNames(squadId, teamNames);
+    foreach(const QString& teamName, teamNames)
+    {
+        deleteTeam(squadId, teamName);
+    }
 }

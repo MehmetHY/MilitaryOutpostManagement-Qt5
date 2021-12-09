@@ -1,6 +1,7 @@
 #include "soldier.h"
 #include "../Data/datamanager.h"
 #include "rank.h"
+#include "duty.h"
 
 Soldier::Soldier(const int id, const QString &name, const int rankId, const QString &role, const int teamId)
     : id(id), name(name), rankId(rankId), role(role), teamId(teamId)
@@ -120,6 +121,8 @@ void Soldier::getAllSoldierNames(const int teamId, QStringList &outList)
 
 void Soldier::deleteSoldier(const QString &name, const int teamId)
 {
+    int soldierId = getSoldierId(teamId, name);
+    Duty::deleteAllDutiesOfSoldier(soldierId);
     QSqlQuery query;
     const QString queryString = "DELETE FROM soldier WHERE team_id = " + QString::number(teamId) + " AND name = '" + name + "';";
     DataManager::ExecuteQuery(query, queryString);
@@ -176,4 +179,14 @@ const QString Soldier::getSoldierNameById(const int id)
         return query.value(nameIndex).toString();
     }
     return "";
+}
+
+void Soldier::deleteAllSoldiersOfTeam(const int teamId)
+{
+    QStringList soldierNames;
+    getAllSoldierNames(teamId, soldierNames);
+    foreach(const QString& soldierName, soldierNames)
+    {
+        deleteSoldier(soldierName, teamId);
+    }
 }
